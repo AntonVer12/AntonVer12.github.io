@@ -1,0 +1,244 @@
+/* Reset + Base */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #121212;
+  color: #E0E0E0;
+  line-height: 1.6;
+}
+
+h1, h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #0a45f5;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-overlay {
+  color: #fff;
+  z-index: 2;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+}
+
+.scroll-indicator {
+  margin-top: 2rem;
+}
+
+.scroll-arrow {
+    font-size: 2rem;
+    color: #0a45f5;
+    animation: bounce 1.5s infinite;
+    text-decoration: none;
+}
+
+.btn {
+    display: inline-block;
+    background: #0a45f5;
+    color: #121212;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.25rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #009ebd;
+}
+
+/* Floating Navbar */
+.navbar.floating {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 70%);
+/*  backdrop-filter: blur(8px);*/
+  border-radius: 50px;
+  padding: 0.5rem 0rem;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.navbar a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+    .navbar a:hover {
+        color: #0a45f5;
+    }
+
+/* About */
+.about {
+  background: #181818;
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  margin-right: 2rem;
+}
+
+.about .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+
+.skills {
+  padding: 0;
+  list-style: none;
+  columns: 2;
+  margin-top: 1rem;
+}
+
+    .skills li::before {
+        content: "• ";
+        color: #0a45f5;
+    }
+
+/* Projects */
+.projects {
+  background: #141414;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: #1e1e1e;
+  padding: 1rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+    .project-card h3 {
+        margin: 0.5rem 0;
+        color: #0a45f5;
+    }
+
+/* Testimonials */
+.testimonials {
+  background: #121212;
+  text-align: center;
+}
+
+.testimonial {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    margin: 1rem auto;
+    border-left: 3px solid #0a45f5;
+    max-width: 600px;
+    font-style: italic;
+}
+
+/* Footer */
+.footer {
+  background: #0f0f0f;
+  color: #aaa;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+}
+
+.footer .social-icons img {
+  width: 32px;
+  height: 32px;
+  margin: 0 0.5rem;
+  filter: brightness(0) invert(1);
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.footer .social-icons img:hover {
+  opacity: 1;
+}
+
+/* outer: positioning + centering only (no rotation, no animation) */
+.scroll-down {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%); /* global centering */
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  opacity: 0;                   /* JS fades this in/out */
+  transition: opacity 0.5s ease;
+  will-change: transform, opacity;
+}
+
+/* middle: moves straight along global Y */
+.scroll-mover {
+  display: inline-block;
+  transform: translateY(0);     /* JS animates this only */
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* inner: draws the chevron + rotation; never moves */
+.scroll-chev {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);    /* visual only */
+  opacity: 0.9;
+}

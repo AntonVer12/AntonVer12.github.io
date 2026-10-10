@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Standard meta -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Mateusz Stanek Portfolio, Game developer specializing in gameplay programming.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:title" content="Mateusz Stanek Portfolio">
+    <meta property="og:description" content="Game developer specializing in gameplay programming.">
+    <meta property="og:image" content="images/preview.png">
+    <meta property="og:url" content="https://mateusz-stanek.dev/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card  -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mateusz Stanek Portfolio">
+    <meta name="twitter:description" content="Game developer specializing in gameplay programming.">
+    <meta name="twitter:image" content="images/preview.png">
+
+    <title>Mateusz Stanek Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar floating">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="files\CV_en.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <video autoplay muted loop playsinline poster="media/hero-poster.png">
+            <source src="media/sizzle.webm" type="video/webm">
+            <source src="media/sizzle.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay">
+            <h1>Mateusz Stanek</h1>
+            <p>Game Developer • Programer • Game Designer</p>
+            <a href="#projects" class="btn">Explore My Work</a>
+        </div>
+        <div class="scroll-down">
+            <span class="scroll-mover">
+                <span class="scroll-chev"></span>
+            </span>
+        </div>
+    </header>
+
+
+
+    <section id="about" class="about">
+        <div class="container">
+            <img src="images/profile.png" alt="Mateusz Stanek" class="profile-pic">
+            <div>
+                <h2>Hi, I'm Mateusz</h2>
+                <p>
+                    I’m a game developer and I’ve been creating games for many years. I’m passionate about making, analyzing, and experiencing video games. Over the years, I’ve built many personal projects on my own as well as larger team-based productions. I love testing new technologies and learning new aspects of game development.
+                </p>
+                <p>
+                    As a hobbyist, I also create music, run tabletop RPG sessions, do 3D printing, and rock climb.
+                </p>
+                <ul class="skills">
+                    <li>Unreal Engine 5</li>
+                    <li>Unity</li>
+                    <li>Gameplay Systems</li>
+                    <li>Game Design</li>
+                    <li>VR Development</li>
+                    <li>C#, C++</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div id="project-list" class="project-grid">
+                <!-- JavaScript will dynamically populate this -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <section id="contact">
+            <h2>Contact Links</h2>
+            <div class="container social-icons">
+                <a href="https://github.com/MATI56/" target="_blank"><img src="icons/github.svg" alt="GitHub"></a>
+                <a href="https://www.linkedin.com/in/mateusz-stanek-86a7b8212/" target="_blank"><img src="icons/linkedin.svg" alt="LinkedIn"></a>
+                <a href="https://bobpo.itch.io/" target="_blank"><img src="icons/itchio.svg" alt="Itch.io"></a>
+                <a href="https://www.youtube.com/@BobPo56" target="_blank"><img src="icons/youtube.svg" alt="YouTube"></a>
+                <p>mateusz.stanek560@gmail.com</p>
+            </div>
+            <p>&copy; 2025 Mateusz Stanek</p>
+        </section>
+    </footer>
+
+    <script src="projects.js" defer></script>
+    <script src="scrollHint.js" defer></script>
+
+</body>
+</html>
