@@ -26,7 +26,7 @@ const projects = [
     {
         title: "FunGone",
         image: "images/FunGone.gif",
-        alt: "Screenshot from FunGone",
+        alt: "Screenshot from Fungone",
         description: "A cosy mushroom-gardening strategy game built around resource management, mushroom synergies, and adapting to changing conditions.",
         tools: ["Game Design", "Strategy"],
         link: "https://antonver.itch.io/fungone"
