@@ -5,7 +5,7 @@ image: "images/PilgrimOfNavia.png",
 alt: "Screenshot from Pilgrim of Navia",
 description: "Created the original concept and creative vision, wrote design documentation and dialogue, designed levels, prototyped ideas, and integrated gameplay systems in Unity.",
 tools: ["Unity", "Game Design", "Level Design", "Narrative Design"],
-link: "#"
+link: "https://drive.google.com/file/d/1A0jhvjd8nnwuqSncXz3XRprgfMB_hoCm/view?usp=drive_link"
 },
 {
 title: "DreamDeck",
@@ -13,7 +13,7 @@ image: "images/DreamDeck.png",
 alt: "Screenshot from DreamDeck",
 description: "Developed the narrative concept and script, wrote dialogue, and connected storytelling with card-based gameplay.",
 tools: ["Narrative Design", "Game Design", "Writing"],
-link: "#"
+link: "#https://fellow-gamedecs.itch.io/dreamdeck"
 },
 {
 title: "Project N-O-L",
@@ -25,7 +25,7 @@ link: "https://antonver.itch.io/project-n-o-l"
 },
 {
 title: "FunGone",
-image: "images/FunGone.png",
+image: "images/FunGone.gif",
 alt: "Screenshot from FunGone",
 description: "A cosy mushroom-gardening strategy game built around resource management, mushroom synergies, and adapting to changing conditions.",
 tools: ["Game Design", "Strategy"],
