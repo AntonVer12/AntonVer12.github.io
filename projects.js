@@ -1,3 +1,4 @@
+
 const projects = [
     {
         title: "Pilgrim of Navia",
@@ -26,7 +27,7 @@ const projects = [
     {
         title: "FunGone",
         image: "images/FunGone.gif",
-        alt: "Screenshot from Fungone",
+        alt: "Screenshot from FunGone",
         description: "A cosy mushroom-gardening strategy game built around resource management, mushroom synergies, and adapting to changing conditions.",
         tools: ["Game Design", "Strategy"],
         link: "https://antonver.itch.io/fungone"
@@ -43,16 +44,32 @@ const projects = [
 
 const projectList = document.getElementById("project-list");
 
-projects.forEach(project => {
-  const card = document.createElement("div");
-  card.className = "project-card";
-  const toolsHTML = project.tools.map(tool => `<span class="tool">${tool}</span>`).join(", ");
-  card.innerHTML = `
-    <img src="${project.image}" alt="${project.alt}">
-    <h3>${project.title}</h3>
-	<p class="tools"><strong>Tools:</strong> ${toolsHTML}</p>
-    <p>${project.description}</p>
-    <a class="btn" href="${project.link}" target="_blank" rel="noopener noreferrer">View Project</a>
-  `;
-  projectList.appendChild(card);
-});
+if (!projectList) {
+    console.error('Projects error: no element with id="project-list". Check index.html.');
+} else {
+    projectList.innerHTML = "";
+
+    projects.forEach(project => {
+        const card = document.createElement("div");
+        card.className = "project-card";
+
+        const toolsHTML = project.tools
+            .map(tool => `<span class="tool">${tool}</span>`)
+            .join(", ");
+
+        card.innerHTML = `
+            <img src="${project.image}" alt="${project.alt}">
+            <h3>${project.title}</h3>
+            <p class="tools"><strong>Tools:</strong> ${toolsHTML}</p>
+            <p>${project.description}</p>
+            <a class="btn" href="${project.link}" target="_blank" rel="noopener noreferrer">View Project</a>
+        `;
+
+        const projectImage = card.querySelector("img");
+        projectImage.addEventListener("error", () => {
+            console.error("Could not load project image:", project.image);
+        });
+
+        projectList.appendChild(card);
+    });
+}
