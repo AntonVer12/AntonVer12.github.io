@@ -36,7 +36,7 @@ const projects = [
         title: "Operation... What?!",
         image: "images/OperacjaCzego.png",
         alt: "Screenshot from Operation... What?!",
-        description: "A cyberpunk surgery simulator exploring Alzheimer's disease, memory loss, and identity. Contributed to the game's narrative about a person gradually losing their memories.",
+        description: "A cyberpunk surgery simulator created for the Cyberiada 2025 final game jam (24h) to raise awareness of Alzheimer’s disease. I wrote the scenario and dialogue, exploring memory loss and its impact on personal identity.",
         tools: ["Narrative Design", "Storytelling"],
         link: "https://fellow-gamedecs.itch.io/operacja-czego"
     }
