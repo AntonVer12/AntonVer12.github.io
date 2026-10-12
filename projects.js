@@ -44,7 +44,7 @@ const projects = [
         title: "Soplicowo's Diaries",
         image: "images/Tadek.png",
         alt: "Screenshot from Tadek",
-        description: "A unique cooperative dating simulator based on the classic Polish epic "Pan Tadeusz". I Wrote dialogues, adapted classical characters to a new media, and designed whole narrative structurre behind it",
+        description: "A unique cooperative dating simulator based on the classic Polish epic ''Pan Tadeusz''. I Wrote dialogues, adapted classical characters to a new media, and designed whole narrative structurre behind it",
         tools: ["Narrative Design", "Storytelling, Dialogue Writing, Documentation Writing"],
         link: "https://fellow-gamedecs.itch.io/operacja-czego"
     }
