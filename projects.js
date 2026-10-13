@@ -4,49 +4,49 @@ const projects = [
         title: "Pilgrim of Navia",
         image: "images/PilgrimOfNavia.png",
         alt: "Screenshot from Pilgrim of Navia",
-        description: "Created the original concept and creative vision, wrote design documentation and dialogue, designed levels, prototyped ideas, and integrated gameplay systems in Unity.",
-        tools: ["Unity", "Game Design", "Level Design", "Narrative Design"],
+        description: "Created the original concept, design documentation and levels, prototyped ideas, and integrated programmer-built Unity systems into gameplay. Developed in iterative sprints by a small student research club team, this ongoing project is a PS2-inspired survival horror immersive sim.",
+        tools: ["Unity", "Game Design", "Level Design", "Narrative Design", "Direction", "Prefabs", "Sprints"],
         link: "https://drive.google.com/file/d/1A0jhvjd8nnwuqSncXz3XRprgfMB_hoCm/view?usp=drive_link"
     },
     {
         title: "DreamDeck",
         image: "images/DreamDeck.png",
         alt: "Screenshot from DreamDeck",
-        description: "Developed the narrative concept and script, wrote dialogue, and connected storytelling with card-based gameplay.",
-        tools: ["Narrative Design", "Game Design", "Writing"],
+        description: "A narrative-driven card adventure for Cyberiada 2024/2025, following Lucy as grief and fear blur the line between dreams and reality. I developed the narrative concept, script and dialogue, using unreliable narration and linking card-combination battles with storytelling to reveal hidden layers of Lucy’s story through symbolic synergies and clues.",
+        tools: ["Narrative Design", "Game Design", "Writing" "Scriptwriting "],
         link: "https://fellow-gamedecs.itch.io/dreamdeck"
     },
     {
         title: "Project N-O-L",
         image: "images/NOL.png",
         alt: "Screenshot from Project N-O-L",
-        description: "Led creative direction and designed the narrative and gameplay. Implemented animations, graphics, and ending logic in Unity.",
-        tools: ["Unity", "Game Design", "Narrative Design"],
+        description: "Created during a week-long game jam, this quirky investigative game follows a UFO fanatic in communist-era Poland, searching newspaper clippings, radio broadcasts and TV signals for clues to summon aliens using bizarre equipment. I led creative direction, designed the narrative and gameplay, and implemented animations, graphics and ending logic in Unity.",
+        tools: ["Unity", "Game Design", "Narrative Design", "Writing"],
         link: "https://antonver.itch.io/project-n-o-l"
     },
     {
         title: "FunGone",
         image: "images/FunGone.png",
         alt: "Screenshot from FunGone",
-        description: "A cosy mushroom-gardening strategy game built around resource management, mushroom synergies, and adapting to changing conditions.",
-        tools: ["Game Design", "Strategy"],
+        description: "A cosy mushroom-gardening strategy game created during a week-long game jam. I built its world, wrote short-form humorous dialogue, and designed grid-based roguelite mushroom mechanics focused on synergies and resource management.",
+        tools: ["Game Design", "Writing", "Level Design"],
         link: "https://antonver.itch.io/fungone"
     },
     {
         title: "Operation... What?!",
         image: "images/OperacjaCzego.png",
         alt: "Screenshot from Operation... What?!",
-        description: "A cyberpunk surgery simulator created for the Cyberiada 2025 final game jam (24h) to raise awareness of Alzheimer’s disease. I wrote the scenario and dialogue, exploring memory loss and its impact on personal identity.",
+        description: "A cyberpunk surgery simulator created for the Cyberiada 2025 final game jam (24h), a game made to raise awareness of Alzheimer’s disease. I wrote the scenario and dialogue, exploring memory loss and its impact on personal identity of the main character.",
         tools: ["Narrative Design", "Storytelling"],
         link: "https://fellow-gamedecs.itch.io/operacja-czego"
     },
     {
-        title: "Soplicowo's Diaries",
+        title: "Soplicowo Summer Diaries",
         image: "images/Tadek.png",
         alt: "Screenshot from Tadek",
-        description: "A unique cooperative dating simulator based on the classic Polish epic ''Pan Tadeusz''. I Wrote dialogues, adapted classical characters to a new media, and designed whole narrative structurre behind it.",
+        description: "A unique cooperative dating simulator based on the classic Polish epic ''Pan Tadeusz''. I wrote dialogues, adapted classical characters to a new media, and designed whole narrative structurre behind it.",
         tools: ["Narrative Design", "Storytelling, Dialogue Writing, Documentation Writing"],
-        link: "https://fellow-gamedecs.itch.io/operacja-czego"
+        link: "https://www.youtube.com/watch?v=xUlZ1ocaIwQ"
     }
 ];
 
