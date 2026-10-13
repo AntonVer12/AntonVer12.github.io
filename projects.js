@@ -13,7 +13,7 @@ const projects = [
         image: "images/DreamDeck.png",
         alt: "Screenshot from DreamDeck",
         description: "A narrative-driven card adventure for Cyberiada 2024/2025, following Lucy as grief and fear blur the line between dreams and reality. I developed the narrative concept, script and dialogue, using unreliable narration and linking card-combination battles with storytelling to reveal hidden layers of Lucy’s story through symbolic synergies and clues.",
-        tools: ["Narrative Design", "Game Design", "Writing" "Scriptwriting "],
+        tools: ["Narrative Design", "Game Design", "Writing", "Scriptwriting "],
         link: "https://fellow-gamedecs.itch.io/dreamdeck"
     },
     {
