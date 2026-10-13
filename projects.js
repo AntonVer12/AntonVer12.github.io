@@ -44,7 +44,7 @@ const projects = [
         title: "Soplicowo Summer Diaries",
         image: "images/Tadek.png",
         alt: "Screenshot from Tadek",
-        description: "A unique cooperative dating simulator based on the classic Polish epic ''Pan Tadeusz''. I wrote dialogues, adapted classical characters to a new media, and designed whole narrative structurre behind it.",
+        description: "A unique cooperative dating simulator based on the classic Polish epic ''Pan Tadeusz''. I wrote dialogues, adapted classical characters to a new media, and designed whole narrative structure behind it.",
         tools: ["Narrative Design", "Storytelling", "Dialogue Writing", "Documentation Writing"],
         link: "https://www.youtube.com/watch?v=xUlZ1ocaIwQ"
     }
