@@ -6,7 +6,7 @@ const projects = [
         description: "Created the original concept, design documentation and levels, prototyped ideas, and integrated programmer-built Unity systems into gameplay. Developed in iterative sprints by a small student research club team, this ongoing project is a PS2-inspired survival horror immersive sim.",
         tools: ["Unity", "Game Design", "Level Design", "Narrative Design", "Direction", "Prefabs", "Sprints"],
         link: "https://drive.google.com/file/d/1A0jhvjd8nnwuqSncXz3XRprgfMB_hoCm/view?usp=drive_link",
-        caseStudy: "/projects/pilgrim-of-navia/"
+        //caseStudy: "/projects/pilgrim-of-navia/"
     },
     {
         title: "DreamDeck",
@@ -15,7 +15,7 @@ const projects = [
         description: "A narrative-driven card adventure for Cyberiada 2024/2025, following Lucy as grief and fear blur the line between dreams and reality. I developed the narrative concept, script and dialogue, using unreliable narration and linking card-combination battles with storytelling to reveal hidden layers of Lucy’s story through symbolic synergies and clues.",
         tools: ["Narrative Design", "Game Design", "Writing", "Scriptwriting"],
         link: "https://fellow-gamedecs.itch.io/dreamdeck",
-        caseStudy: "/projects/dreamdeck/"
+        //caseStudy: "/projects/dreamdeck/"
     },
     {
         title: "Project N-O-L",
@@ -24,7 +24,7 @@ const projects = [
         description: "Created during a week-long game jam, this quirky investigative game follows a UFO fanatic in communist-era Poland, searching newspaper clippings, radio broadcasts and TV signals for clues to summon aliens using bizarre equipment. I led creative direction, designed the narrative and gameplay, and implemented animations, graphics and ending logic in Unity.",
         tools: ["Unity", "Game Design", "Narrative Design", "Writing"],
         link: "https://antonver.itch.io/project-n-o-l",
-        caseStudy: "/projects/project-n-o-l/"
+        //caseStudy: "/projects/project-n-o-l/"
     },
     {
         title: "FunGone",
@@ -33,7 +33,7 @@ const projects = [
         description: "A cosy mushroom-gardening strategy game created during a week-long game jam. I built its world, wrote short-form humorous dialogue, and designed grid-based roguelite mushroom mechanics focused on synergies and resource management.",
         tools: ["Game Design", "Writing", "Level Design"],
         link: "https://antonver.itch.io/fungone",
-        caseStudy: "/projects/fungone/"
+        //caseStudy: "/projects/fungone/"
     },
     {
         title: "Operation... What?!",
@@ -42,7 +42,7 @@ const projects = [
         description: "A cyberpunk surgery simulator created for the Cyberiada 2025 final game jam (24h), a game made to raise awareness of Alzheimer’s disease. I wrote the scenario and dialogue, exploring memory loss and its impact on personal identity of the main character.",
         tools: ["Narrative Design", "Storytelling"],
         link: "https://fellow-gamedecs.itch.io/operacja-czego",
-        caseStudy: "/projects/operation-what/"
+        //caseStudy: "/projects/operation-what/"
     },
     {
         title: "Soplicowo Summer Diaries",
@@ -51,7 +51,7 @@ const projects = [
         description: "A unique cooperative dating simulator based on the classic Polish epic ''Pan Tadeusz''. I wrote dialogues, adapted classical characters to a new media, and designed whole narrative structure behind it.",
         tools: ["Narrative Design", "Storytelling", "Dialogue Writing", "Documentation Writing"],
         link: "https://www.youtube.com/watch?v=xUlZ1ocaIwQ",
-        caseStudy: "/projects/soplicowo-summer-diaries/"
+        //caseStudy: "/projects/soplicowo-summer-diaries/"
     }
 ];
 
@@ -70,6 +70,13 @@ if (!projectList) {
             .map(tool => `<span class="tool">${tool}</span>`)
             .join(", ");
 
+        // Warunkowe wygenerowanie przycisku Design Process tylko jeśli caseStudy istnieje i nie jest wykomentowane
+        const caseStudyButtonHTML = project.caseStudy ? `
+            <a class="btn" href="${project.caseStudy}">
+                Design Process
+            </a>
+        ` : '';
+
         card.innerHTML = `
             <img src="${project.image}" alt="${project.alt}">
             <h3>${project.title}</h3>
@@ -83,10 +90,7 @@ if (!projectList) {
                    rel="noopener noreferrer">
                     View Project
                 </a>
-
-                <a class="btn" href="${project.caseStudy}">
-                    Design Process
-                </a>
+                ${caseStudyButtonHTML}
             </div>
         `;
 

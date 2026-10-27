@@ -14,14 +14,15 @@
 
 									<style>
 										:root {
-										--dd-bg: #121716;
-										--dd-section: #181e1b;
-										--dd-card: #1e2622;
+										--dd-bg: #131118;
+										--dd-section: #191522;
+										--dd-card: #201b2c;
 										--dd-text: #e4e4e4;
 										--dd-muted: #b4b4b4;
-										--dd-accent: #c9a16a;
-										--dd-accent-hover: #dfbd88;
-										--dd-border: #343c37;
+										/* Spójny fioletowy akcent dla całego projektu */
+										--dd-accent: #a370df;
+										--dd-accent-hover: #bc92ef;
+										--dd-border: #3b324d;
 										}
 
 										body {
@@ -47,7 +48,7 @@
 										align-items: flex-end;
 										justify-content: center;
 										overflow: hidden;
-										background: #202923;
+										background: #1b1626;
 										border-radius: 0 0 14px 14px;
 										}
 
@@ -66,9 +67,9 @@
 										inset: 0;
 										background: linear-gradient(
 										to top,
-										rgba(10, 15, 13, 0.97) 0%,
-										rgba(10, 15, 13, 0.70) 45%,
-										rgba(10, 15, 13, 0.10) 100%
+										rgba(13, 11, 18, 0.97) 0%,
+										rgba(13, 11, 18, 0.70) 45%,
+										rgba(13, 11, 18, 0.10) 100%
 										);
 										}
 
@@ -99,6 +100,7 @@
 										line-height: 1.2;
 										max-width: 980px;
 										margin: 0 auto 20px;
+										color: var(--dd-text); /* Zmienione z pomarańczowego/złotego na neutralny tekst */
 										}
 
 										.dd-hero-subtitle {
@@ -133,12 +135,12 @@
 
 										.dd-button:hover {
 										background: var(--dd-accent);
-										color: #121716;
+										color: #131118;
 										}
 
 										.dd-button-primary {
 										background: var(--dd-accent);
-										color: #121716;
+										color: #131118;
 										}
 
 										.dd-button-primary:hover {
@@ -221,9 +223,8 @@
 										margin-bottom: 10px;
 										}
 
-										/* ZWIĘKSZONY KONTRAST I CZYTELNOŚĆ BOKSÓW (FEEDBACK) */
 										.dd-translation {
-										background: rgba(26, 36, 31, 0.85);
+										background: rgba(26, 21, 36, 0.85);
 										border: 1px solid var(--dd-border);
 										border-left: 4px solid var(--dd-accent);
 										padding: 20px 22px;
@@ -253,7 +254,7 @@
 										display: block;
 										width: 100%;
 										max-height: 660px;
-										background: #080b09;
+										background: #0d0b12;
 										border-radius: 10px;
 										border: 1px solid var(--dd-border);
 										}
@@ -285,7 +286,7 @@
 										width: 100%;
 										aspect-ratio: 4 / 3;
 										object-fit: contain;
-										background: #101512;
+										background: #13101c;
 										}
 
 										.dd-example-card-content {
@@ -313,7 +314,7 @@
 										.dd-takeaway {
 										margin-top: 36px;
 										padding: 28px;
-										background: rgba(26, 36, 31, 0.85);
+										background: rgba(26, 21, 36, 0.85);
 										border: 1px solid var(--dd-border);
 										border-left: 4px solid var(--dd-accent);
 										border-radius: 0 8px 8px 0;
@@ -341,6 +342,11 @@
 										.navbar .linkedin-icon {
 										font-family: Arial, sans-serif;
 										font-weight: 700;
+										}
+
+										/* Nadanie fioletowego koloru dla nagłówka Let's Connect w stopce */
+										.footer h2 {
+										color: var(--dd-accent);
 										}
 
 										.footer .social-icons {
@@ -379,13 +385,13 @@
 										}
 
 										.footer .contact-details .contact-email {
-										color: var(--accent);
+										color: var(--dd-accent);
 										font-size: 1.05rem;
 										font-weight: 700;
 										}
 
 										.footer .contact-details a:hover {
-										color: var(--accent-hover);
+										color: var(--dd-accent-hover);
 										text-decoration: underline;
 										}
 

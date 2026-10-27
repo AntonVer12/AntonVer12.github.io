@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="A narrative and game design breakdown of Soplicowo Summer Diaries, adapting Adam Mickiewicz's epic poem into a Monster Prom-inspired dating simulator.">
+		<meta name="theme-color" content="#111817">
+
+		<title>Soplicowo Summer Diaries — Narrative & Game Design Breakdown | Antoni Janiak</title>
+
+		<link rel="stylesheet" href="../../styles.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+		<style>
+			:root {
+				--sd-bg: #141217;
+				--sd-section: #1b1721;
+				--sd-card: #231e2d;
+				--sd-text: #e4e4e4;
+				--sd-muted: #b4b4b4;
+				--sd-accent: #ff3385;
+				--sd-accent-hover: #ff66a3;
+				--sd-border: #423554;
+			}
+
+			body {
+				background: var(--sd-bg);
+				color: var(--sd-text);
+				font-family: "Roboto", sans-serif;
+				line-height: 1.75;
+				margin: 0;
+				font-size: 1.05rem;
+			}
+
+			/* HERO / COVER */
+
+			.sd-page {
+				width: min(100% - 48px, 1280px);
+				margin: 0 auto;
+			}
+
+			.sd-hero {
+				position: relative;
+				min-height: 620px;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				overflow: hidden;
+				background: #1c1724;
+				border-radius: 0 0 14px 14px;
+			}
+
+			.sd-hero-media {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+
+			.sd-hero::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					to top,
+					rgba(14, 11, 18, 0.97) 0%,
+					rgba(14, 11, 18, 0.70) 45%,
+					rgba(14, 11, 18, 0.15) 100%
+				);
+			}
+
+			.sd-hero-content {
+				position: relative;
+				z-index: 1;
+				width: 100%;
+				max-width: 1100px;
+				box-sizing: border-box;
+				margin: 0 auto;
+				padding: 60px 48px 52px;
+				text-align: center;
+			}
+
+			.sd-eyebrow {
+				color: #ffffff;
+				font-size: 0.9rem;
+				font-weight: 700;
+				letter-spacing: 2.2px;
+				text-transform: uppercase;
+				margin-bottom: 14px;
+			}
+
+			.sd-hero h1 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+				line-height: 1.2;
+				max-width: 980px;
+				margin: 0 auto 20px;
+				color: #ffffff;
+			}
+
+			.sd-hero-subtitle {
+				color: #d1d5d2;
+				font-size: 1.22rem;
+				max-width: 780px;
+				margin: 0 auto;
+			}
+
+			.sd-hero-links {
+				display: flex;
+				justify-content: center;
+				gap: 16px;
+				flex-wrap: wrap;
+				margin-top: 34px;
+				margin-bottom: 10px;
+			}
+
+			.sd-button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 12px 22px;
+				border: 1px solid var(--sd-accent);
+				border-radius: 6px;
+				color: var(--sd-accent);
+				text-decoration: none;
+				font-size: 1rem;
+				font-weight: 700;
+				transition: background 0.2s ease, color 0.2s ease;
+			}
+
+			.sd-button:hover {
+				background: var(--sd-accent);
+				color: #141217;
+			}
+
+			.sd-button-primary {
+				background: var(--sd-accent);
+				color: #141217;
+			}
+
+			.sd-button-primary:hover {
+				background: var(--sd-accent-hover);
+			}
+
+			/* CONTENT SECTIONS */
+
+			.sd-section {
+				padding: 64px 0;
+				border-bottom: 1px solid var(--sd-border);
+				scroll-margin-top: 85px;
+			}
+
+			.sd-section h2 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+				line-height: 1.35;
+				margin: 0 0 24px;
+				color: var(--sd-accent);
+			}
+
+			.sd-section h3 {
+				font-size: 1.25rem;
+				margin: 0 0 14px;
+			}
+
+			.sd-section p {
+				color: var(--sd-muted);
+				margin: 0 0 20px;
+			}
+
+			.sd-lead {
+				font-size: 1.18rem;
+				line-height: 1.85;
+			}
+
+			.sd-project-credits {
+				font-size: 1rem;
+				border-left: 3px solid var(--sd-accent);
+				padding-left: 18px;
+				margin-top: 28px;
+			}
+
+			.sd-project-credits strong {
+				color: var(--sd-text);
+			}
+
+			/* TRANSLATION & TAKEAWAY BOXES */
+			.sd-translation {
+				background: rgba(35, 30, 45, 0.85);
+				border: 1px solid var(--sd-border);
+				border-left: 4px solid var(--sd-accent);
+				padding: 20px 22px;
+				margin-top: 16px;
+				border-radius: 0 6px 6px 0;
+			}
+
+			.sd-translation p {
+				color: var(--sd-text);
+				margin: 0;
+			}
+
+			.sd-translation .sd-placeholder {
+				color: var(--sd-text);
+				font-style: normal;
+				font-size: 1.05rem;
+				line-height: 1.8;
+			}
+
+			/* GAMEPLAY & TRAILER VIDEO */
+
+			.sd-video {
+				margin-top: 40px;
+			}
+
+			.sd-video video {
+				display: block;
+				width: 100%;
+				max-height: 660px;
+				background: #0e0b12;
+				border-radius: 10px;
+				border: 1px solid var(--sd-border);
+			}
+
+			.sd-caption {
+				font-size: 0.95rem;
+				margin-top: 12px !important;
+			}
+
+			/* Styl dla dopisku work-in-progress małym druczkiem */
+			.sd-wip-note {
+				font-size: 0.85rem;
+				color: var(--sd-muted);
+				font-style: italic;
+				margin-top: -10px;
+				margin-bottom: 20px;
+			}
+
+			/* CHARACTER CARDS GRID */
+
+			.sd-card-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 24px;
+				margin-top: 32px;
+			}
+
+			.sd-example-card {
+				background: var(--sd-card);
+				border: 1px solid var(--sd-border);
+				border-radius: 10px;
+				overflow: hidden;
+				min-width: 0;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.sd-example-card img {
+				display: block;
+				width: 100%;
+				aspect-ratio: 3 / 4;
+				object-fit: cover;
+				object-position: center top;
+				background: #14101c;
+			}
+
+			.sd-example-card-content {
+				padding: 22px;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				justify-content: space-between;
+			}
+
+			.sd-example-card h3 {
+				font-size: 1.2rem;
+				line-height: 1.4;
+				color: var(--sd-text);
+				margin-bottom: 8px;
+			}
+
+			.sd-example-card p {
+				font-size: 0.98rem;
+				margin-bottom: 16px;
+			}
+
+			.sd-label {
+				display: inline-block;
+				color: var(--sd-accent);
+				font-size: 0.84rem;
+				text-transform: uppercase;
+				letter-spacing: 1.4px;
+				font-weight: 700;
+				margin-bottom: 10px;
+			}
+
+			/* NAVIGATION AND FOOTER */
+
+			.navbar .nav-contact-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-width: 28px;
+				min-height: 28px;
+				font-size: 1.2rem;
+				line-height: 1;
+			}
+
+			.navbar .linkedin-icon {
+				font-family: Arial, sans-serif;
+				font-weight: 700;
+			}
+
+			.footer h2 {
+				color: var(--sd-accent);
+			}
+
+			.footer .social-icons {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 1.25rem;
+				padding: 0.5rem 1rem 0.25rem;
+			}
+
+			.footer .social-icons a {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				line-height: 0;
+			}
+
+			.footer .social-icons img {
+				width: 32px;
+				height: 32px;
+				margin: 0;
+			}
+
+			.footer .contact-details {
+				margin-top: 0.25rem;
+			}
+
+			.footer .contact-details p {
+				margin: 0.35rem 0;
+			}
+
+			.footer .contact-details a {
+				color: var(--text-main);
+				text-decoration: none;
+				transition: color 0.2s ease;
+			}
+
+			.footer .contact-details .contact-email {
+				color: var(--sd-accent);
+				font-size: 1.05rem;
+				font-weight: 700;
+			}
+
+			.footer .contact-details a:hover {
+				color: var(--sd-accent-hover);
+				text-decoration: underline;
+			}
+
+			/* RESPONSIVE */
+
+			@media (max-width: 850px) {
+				.sd-card-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 700px) {
+				.sd-page {
+					width: min(100% - 28px, 1280px);
+				}
+
+				.sd-hero {
+					min-height: 500px;
+				}
+
+				.sd-hero-content {
+					padding: 44px 22px 38px;
+				}
+
+				.sd-section {
+					padding: 38px 0;
+				}
+
+				.navbar ul {
+					gap: 0.6rem 1rem;
+				}
+
+				.navbar a {
+					font-size: 0.9rem;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- MAIN PORTFOLIO NAVIGATION -->
+		<nav class="navbar floating" aria-label="Main navigation">
+			<ul>
+				<li><a href="../../index.html">Portfolio</a></li>
+				<li><a href="../../index.html#about">About</a></li>
+				<li><a href="../../index.html#projects">Projects</a></li>
+				<li>
+					<a class="nav-contact-icon" href="mailto:antoni.janiak.dev@gmail.com" aria-label="Email Antoni" title="Email">
+						<span aria-hidden="true">✉</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon" href="tel:+48662786947" aria-label="Call Antoni" title="Phone">
+						<span aria-hidden="true">☎</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon linkedin-icon" href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
+						<span aria-hidden="true">in</span>
+					</a>
+				</li>
+				<li><a href="../../files/CV_en.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+			</ul>
+		</nav>
+
+
+		<main class="sd-page">
+
+			<!-- TITLE / COVER (TRAILER / HERO) -->
+			<section class="sd-hero">
+				<video class="sd-hero-media" autoplay muted loop playsinline>
+					<source src="media/tadeusz-trailer.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+
+				<div class="sd-hero-content">
+					<div class="sd-eyebrow">
+						Game & Narrative Design Breakdown · Soplicowo Summer Diaries
+					</div>
+
+					<h1>Blending a Polish National Epic with Monster Prom Dating Sim Mechanics</h1>
+
+					<p class="sd-hero-subtitle">
+						Serving as Game Designer, Narrative Designer, and Writer, transforming a chronological literary classic into non-linear dating encounters.
+					</p>
+
+					<div class="sd-hero-links">
+						<!-- Przycisk Watch Trailer kierujący do YouTube -->
+						<a class="sd-button sd-button-primary" href="TUTAJ_LINK_DO_TRAILERA_NA_YT" target="_blank" rel="noopener noreferrer">
+							Watch Trailer
+						</a>
+						<a class="sd-button" href="../../index.html">
+							Back to Portfolio
+						</a>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- HOW IT STARTED -->
+			<section class="sd-section">
+				<div class="sd-eyebrow">01 · How It Started & Scoping</div>
+
+				<h2>Getting It Right: Research & Systems</h2>
+
+				<p class="sd-lead">
+					The project began with extensive research into dating sims and analyzing adaptations of "Pan Tadeusz". The key was matching the fast-paced, chaotic nature of *Monster Prom*[cite: 12] while structuring production through detailed design sheets.
+				</p>
+
+				<p>
+					Working on the project required rigorous asset management, tracking character poses, expressions, and dialogue branches within structured documentation.
+				</p>
+
+				<div class="sd-hero-links" style="justify-content: flex-start; margin-top: 20px;">
+					<a class="sd-button" href="TUTAJ_WKLEJ_LINK_DO_DESIGN_SHEETOW" target="_blank" rel="noopener noreferrer">
+						📊 View Full Design Breakdown (Google Sheets)
+					</a>
+				</div>
+
+				<div class="sd-project-credits" style="margin-top: 30px;">
+					<strong>Project Scope:</strong> Narrative Design, Character Sheets, Game Loops & Dialogue System.
+				</div>
+			</section>
+
+
+			<!-- CHARACTER ADAPTATIONS -->
+			<section class="sd-section">
+				<div class="sd-eyebrow">02 · Character Adaptation</div>
+
+				<h2>Reimagining the Classics Without Losing the Source Material</h2>
+
+				<p class="sd-lead">
+					Translating 19th-century epic characters into a modern dating sim while preserving their literary roots and injecting humor. Here are 3 key characters and their game archetypes:
+				</p>
+
+				<div class="sd-card-grid">
+
+					<!-- CHARACTER 1: TADEUSZ -->
+					<article class="sd-example-card">
+						<img src="images/tadeusz-char.png" alt="Tadeusz character art" loading="lazy">
+						<div class="sd-example-card-content">
+							<div>
+								<span class="sd-label">Character Sheet 01</span>
+								<h3>Tadeusz — The Lost Romantic</h3>
+								<p>
+									A young, idealistic dreamer trying to navigate the complex social dynamics of Soplicowo manor.
+								</p>
+							</div>
+							<div style="margin-top: 15px;">
+								<a class="sd-button" style="width: 100%; text-align: center; box-sizing: border-box;" href="TUTAJ_LINK_DO_KARTY_TADEUSZ" target="_blank" rel="noopener noreferrer">
+									Full Character Sheet
+								</a>
+							</div>
+						</div>
+					</article>
+
+					<!-- CHARACTER 2: TELIMENA -->
+					<article class="sd-example-card">
+						<img src="images/telimena-char.png" alt="Telimena character art" loading="lazy">
+						<div class="sd-example-card-content">
+							<div>
+								<span class="sd-label">Character Sheet 02</span>
+								<h3>Telimena — Master of Intrigue</h3>
+								<p>
+									A connoisseur of salon flirting and high-society games, treating every potential match as a strategic victory.
+								</p>
+							</div>
+							<div style="margin-top: 15px;">
+								<a class="sd-button" style="width: 100%; text-align: center; box-sizing: border-box;" href="TUTAJ_LINK_DO_KARTY_TELIMENA" target="_blank" rel="noopener noreferrer">
+									Full Character Sheet
+								</a>
+							</div>
+						</div>
+					</article>
+
+					<!-- CHARACTER 3: HRABIA -->
+					<article class="sd-example-card">
+						<img src="images/hrabia-char.png" alt="Hrabia character art" loading="lazy">
+						<div class="sd-example-card-content">
+							<div>
+								<span class="sd-label">Character Sheet 03</span>
+								<h3>Hrabia — The Melancholic Aristocrat</h3>
+								<p>
+									An eccentric artist obsessed with Gothic romance, beautiful landscapes, and dramatic romantic gestures.
+								</p>
+							</div>
+							<div style="margin-top: 15px;">
+								<a class="sd-button" style="width: 100%; text-align: center; box-sizing: border-box;" href="TUTAJ_LINK_DO_KARTY_HRABIA" target="_blank" rel="noopener noreferrer">
+									Full Character Sheet
+								</a>
+							</div>
+						</div>
+					</article>
+
+				</div>
+			</section>
+
+
+			<!-- GAME LOOPS & NON-CHRONOLOGICAL ENCOUNTERS -->
+			<section class="sd-section">
+				<div class="sd-eyebrow">03 · Game Loops & Narrative Structure</div>
+
+				<h2>Adapting an Epic Poem into Non-Chronological Encounters</h2>
+
+				<p class="sd-lead">
+					The biggest narrative design challenge was converting a linear literary narrative into a flexible system of randomized dating sim encounters.
+				</p>
+
+				<p>
+					I designed a game loop system where players navigate key locations across the estate, breaking down book events into modular dating scenarios for high replayability.
+				</p>
+
+				<div class="sd-hero-links" style="justify-content: flex-start; margin: 20px 0;">
+					<a class="sd-button" href="TUTAJ_LINK_DO_DESIGN_LOOP_DOCS" target="_blank" rel="noopener noreferrer">
+						🔗 View Game Loops & Narrative Design Documentation
+					</a>
+				</div>
+
+				<div class="sd-translation">
+					<span class="sd-label">Design Takeaway</span>
+					<p class="sd-placeholder">
+						"Non-linearity in historically rooted games requires abandoning strict chronology in favor of thematic matching—aligning the player's emotional state with the dynamics of the encounter."
+					</p>
+				</div>
+			</section>
+
+
+			<!-- GAMEPLAY / ENCOUNTER VIDEO -->
+			<section class="sd-section">
+				<div class="sd-eyebrow">04 · In-Action</div>
+
+				<h2>See Dialogue in Action</h2>
+				<p class="sd-wip-note">*Note: Visual assets and UI elements shown in the gameplay are work in progress.</p>
+
+				<p>
+					The video below showcases raw gameplay footage, comedic timing, and choice mechanics.
+				</p>
+
+				<div class="sd-video">
+					<video controls="" preload="metadata">
+						<source src="media/tadeusz-encounter.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<p class="sd-caption">
+						Gameplay and character interaction breakdown.
+					</p>
+				</div>
+			</section>
+
+		</main>
+
+
+		<!-- CONTACT FOOTER -->
+		<footer class="footer">
+			<section id="contact">
+				<p class="section-kicker">GET IN TOUCH</p>
+				<h2>Let's Connect</h2>
+
+				<p>
+					Interested in game design, narrative or collaborating on a project?
+				</p>
+
+				<div class="container social-icons">
+					<a href="https://github.com/antonver12/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+						<img src="../../icons/github.svg" alt="GitHub">
+					</a>
+
+					<a href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+						<img src="../../icons/linkedin.svg" alt="LinkedIn">
+					</a>
+
+					<a href="https://antonver.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+						<img src="../../icons/itchio.svg" alt="itch.io">
+					</a>
+				</div>
+
+				<div class="contact-details">
+					<p>
+						<strong>
+							<a class="contact-email" href="mailto:antoni.janiak.dev@gmail.com">
+								antoni.janiak.dev@gmail.com
+							</a>
+						</strong>
+					</p>
+
+					<p>
+						<a class="contact-phone" href="tel:+48662786947">
+							+48 662 786 947
+						</a>
+					</p>
+				</div>
+
+				<p class="copyright">&copy; 2026 Antoni Janiak</p>
+			</section>
+		</footer>
+
+	</body>
+</html>
