@@ -28,23 +28,63 @@
 </head>
 
 	<body>
-		<nav class="navbar floating">
+
+		<!-- NAVIGATION -->
+		<nav class="navbar floating" aria-label="Main navigation">
 			<ul>
 				<li>
 					<a href="#about">About</a>
 				</li>
+
 				<li>
 					<a href="#projects">Projects</a>
 				</li>
+
 				<li>
-					<a href="#contact">Contact</a>
+					<a
+						class="nav-contact-icon"
+						href="mailto:antoni.janiak.dev@gmail.com"
+						aria-label="Email Antoni"
+						title="Email">
+						<span aria-hidden="true">✉</span>
+					</a>
 				</li>
+
 				<li>
-					<a href="files/CV_en.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+					<a
+						class="nav-contact-icon"
+						href="tel:+48662786947"
+						aria-label="Call Antoni"
+						title="Phone">
+						<span aria-hidden="true">☎</span>
+					</a>
+				</li>
+
+				<li>
+					<a
+						class="nav-contact-icon linkedin-icon"
+						href="https://www.linkedin.com/in/antoni-janiak-352a87364/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="LinkedIn profile"
+						title="LinkedIn">
+						<span aria-hidden="true">in</span>
+					</a>
+				</li>
+
+				<li>
+					<a
+						href="files/CV_en.pdf"
+						target="_blank"
+						rel="noopener noreferrer">
+						Resume
+					</a>
 				</li>
 			</ul>
 		</nav>
 
+
+		<!-- HERO -->
 		<header class="hero">
 			<video autoplay="" muted="" loop="" playsinline="" preload="auto" poster="media/hero-poster.png">
 				<source src="media/Showreel.webm" type="video/webm">
@@ -64,9 +104,14 @@
 			</div>
 		</header>
 
+
+		<!-- ABOUT -->
 		<section id="about" class="about">
 			<div class="container">
-				<img src="images/profile.png" alt="Portrait of Antoni Janiak" class="profile-pic">
+				<img
+					src="images/profile.png"
+					alt="Portrait of Antoni Janiak"
+					class="profile-pic">
 
 					<div class="about-content">
 						<h2>Hi, I'm Antoni.</h2>
@@ -101,6 +146,8 @@
 				</div>
 		</section>
 
+
+		<!-- PROJECTS -->
 		<section id="projects" class="projects">
 			<div class="container">
 				<p class="section-kicker">SELECTED WORK</p>
@@ -112,34 +159,73 @@
 			</div>
 		</section>
 
+
+		<!-- FOOTER / CONTACT -->
 		<footer class="footer">
 			<section id="contact">
 				<p class="section-kicker">GET IN TOUCH</p>
 				<h2>Let's Connect</h2>
 
-				<p>Interested in game design, narrative or collaborating on a project?</p>
+				<p>
+					Interested in game design, narrative or collaborating on a project?
+				</p>
 
+				<!-- GITHUB, LINKEDIN AND ITCH.IO -->
 				<div class="container social-icons">
-					<a href="https://github.com/antonver12/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+					<a
+						href="https://github.com/antonver12/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="GitHub">
 						<img src="icons/github.svg" alt="GitHub">
                 </a>
 
-					<a href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+					<a
+						href="https://www.linkedin.com/in/antoni-janiak-352a87364/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="LinkedIn">
 						<img src="icons/linkedin.svg" alt="LinkedIn">
                 </a>
 
-					<a href="https://antonver.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+					<a
+						href="https://antonver.itch.io/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="itch.io">
 						<img src="icons/itchio.svg" alt="itch.io">
                 </a>
+				</div>
 
-					<p>antoni.janiak.dev@gmail.com</p>
+				<!-- DIRECT CONTACT DETAILS -->
+				<div class="contact-details">
+					<p>
+						<strong>
+							<a
+								class="contact-email"
+								href="mailto:antoni.janiak.dev@gmail.com">
+								antoni.janiak.dev@gmail.com
+							</a>
+						</strong>
+					</p>
+
+					<p>
+						<a
+							class="contact-phone"
+							href="tel:+48662786947">
+							+48 662 786 947
+						</a>
+					</p>
 				</div>
 
 				<p class="copyright">&copy; 2026 Antoni Janiak</p>
 			</section>
 		</footer>
 
+
+		<!-- SCRIPTS -->
 		<script src="projects.js" defer=""></script>
 		<script src="scrollHint.js" defer=""></script>
+
 	</body>
 </html>

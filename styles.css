@@ -265,3 +265,120 @@ border-bottom: 2px solid #fff;
 transform: rotate(-45deg);
 opacity: 0.9;
 }
+/* Project card buttons */
+.project-links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.project-links .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 12px 16px;
+
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: center;
+}
+/* Direct contact icons in the floating navbar */
+.navbar ul {
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.navbar .nav-contact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    min-height: 28px;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.navbar .linkedin-icon {
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+}
+
+
+/* Direct contact details in the footer */
+.contact-details {
+    margin-top: 1.25rem;
+}
+
+.contact-details p {
+    margin: 0.6rem 0;
+}
+
+.contact-details a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-details .contact-email {
+    color: var(--accent);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.contact-details a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+
+/* Smaller screens */
+@media (max-width: 600px) {
+    .navbar ul {
+        gap: 0.6rem 1rem;
+    }
+
+    .navbar a {
+        font-size: 0.9rem;
+    }
+}
+/* Footer social icons: aligned in one compact row */
+.footer .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.5rem 1rem 0.25rem;
+}
+
+.footer .social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.footer .social-icons img {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+}
+
+/* Reduce space between icons and direct contact details */
+.footer .contact-details {
+    margin-top: 0.25rem;
+}
+
+.footer .contact-details p {
+    margin: 0.35rem 0;
+}

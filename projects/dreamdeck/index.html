@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta name="description" content="A narrative design breakdown of DreamDeck, exploring how combat mechanics, card synergies and narrative clues work together.">
+					<meta name="theme-color" content="#111817">
+
+						<title>DreamDeck — Narrative Design Breakdown | Antoni Janiak</title>
+
+						<link rel="stylesheet" href="../../styles.css">
+							<link rel="preconnect" href="https://fonts.googleapis.com">
+								<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+									<style>
+										:root {
+										--dd-bg: #121716;
+										--dd-section: #181e1b;
+										--dd-card: #1e2622;
+										--dd-text: #e4e4e4;
+										--dd-muted: #b4b4b4;
+										--dd-accent: #c9a16a;
+										--dd-accent-hover: #dfbd88;
+										--dd-border: #343c37;
+										}
+
+										body {
+										background: var(--dd-bg);
+										color: var(--dd-text);
+										font-family: "Roboto", sans-serif;
+										line-height: 1.75;
+										margin: 0;
+										font-size: 1.05rem;
+										}
+
+										/* HERO / COVER */
+
+										.dd-page {
+										width: min(100% - 48px, 1280px);
+										margin: 0 auto;
+										}
+
+										.dd-hero {
+										position: relative;
+										min-height: 620px;
+										display: flex;
+										align-items: flex-end;
+										justify-content: center;
+										overflow: hidden;
+										background: #202923;
+										border-radius: 0 0 14px 14px;
+										}
+
+										.dd-hero-image {
+										position: absolute;
+										inset: 0;
+										width: 100%;
+										height: 100%;
+										object-fit: cover;
+										object-position: center;
+										}
+
+										.dd-hero::after {
+										content: "";
+										position: absolute;
+										inset: 0;
+										background: linear-gradient(
+										to top,
+										rgba(10, 15, 13, 0.97) 0%,
+										rgba(10, 15, 13, 0.70) 45%,
+										rgba(10, 15, 13, 0.10) 100%
+										);
+										}
+
+										.dd-hero-content {
+										position: relative;
+										z-index: 1;
+										width: 100%;
+										max-width: 1100px;
+										box-sizing: border-box;
+										margin: 0 auto;
+										padding: 60px 48px 52px;
+										text-align: center;
+										transform: translateY(8px);
+										}
+
+										.dd-eyebrow {
+										color: var(--dd-accent);
+										font-size: 0.9rem;
+										font-weight: 700;
+										letter-spacing: 2.2px;
+										text-transform: uppercase;
+										margin-bottom: 14px;
+										}
+
+										.dd-hero h1 {
+										font-family: "Orbitron", sans-serif;
+										font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+										line-height: 1.2;
+										max-width: 980px;
+										margin: 0 auto 20px;
+										}
+
+										.dd-hero-subtitle {
+										color: #d1d5d2;
+										font-size: 1.22rem;
+										max-width: 780px;
+										margin: 0 auto;
+										}
+
+										.dd-hero-links {
+										display: flex;
+										justify-content: center;
+										gap: 16px;
+										flex-wrap: wrap;
+										margin-top: 34px;
+										margin-bottom: 10px;
+										}
+
+										.dd-button {
+										display: inline-flex;
+										align-items: center;
+										justify-content: center;
+										padding: 12px 22px;
+										border: 1px solid var(--dd-accent);
+										border-radius: 6px;
+										color: var(--dd-accent);
+										text-decoration: none;
+										font-size: 1rem;
+										font-weight: 700;
+										transition: background 0.2s ease, color 0.2s ease;
+										}
+
+										.dd-button:hover {
+										background: var(--dd-accent);
+										color: #121716;
+										}
+
+										.dd-button-primary {
+										background: var(--dd-accent);
+										color: #121716;
+										}
+
+										.dd-button-primary:hover {
+										background: var(--dd-accent-hover);
+										}
+
+										/* CONTENT SECTIONS */
+
+										.dd-section {
+										padding: 64px 0;
+										border-bottom: 1px solid var(--dd-border);
+										scroll-margin-top: 85px;
+										}
+
+										.dd-section h2 {
+										font-family: "Orbitron", sans-serif;
+										font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+										line-height: 1.35;
+										margin: 0 0 24px;
+										color: var(--dd-accent);
+										}
+
+										.dd-section h3 {
+										font-size: 1.25rem;
+										margin: 0 0 14px;
+										}
+
+										.dd-section p {
+										color: var(--dd-muted);
+										margin: 0 0 20px;
+										}
+
+										.dd-lead {
+										font-size: 1.18rem;
+										line-height: 1.85;
+										}
+
+										.dd-project-credits {
+										font-size: 1rem;
+										border-left: 3px solid var(--dd-accent);
+										padding-left: 18px;
+										margin-top: 28px;
+										}
+
+										.dd-project-credits strong {
+										color: var(--dd-text);
+										}
+
+										/* SCREENSHOTS AND TRANSLATIONS */
+
+										.dd-media-card {
+										background: var(--dd-card);
+										border: 1px solid var(--dd-border);
+										border-radius: 10px;
+										overflow: hidden;
+										margin-top: 32px;
+										}
+
+										.dd-media-card img {
+										display: block;
+										width: 100%;
+										height: auto;
+										}
+
+										.dd-media-caption {
+										padding: 26px;
+										}
+
+										.dd-media-caption p:last-child {
+										margin-bottom: 0;
+										}
+
+										.dd-label {
+										display: inline-block;
+										color: var(--dd-accent);
+										font-size: 0.84rem;
+										text-transform: uppercase;
+										letter-spacing: 1.4px;
+										font-weight: 700;
+										margin-bottom: 10px;
+										}
+
+										/* ZWIĘKSZONY KONTRAST I CZYTELNOŚĆ BOKSÓW (FEEDBACK) */
+										.dd-translation {
+										background: rgba(26, 36, 31, 0.85);
+										border: 1px solid var(--dd-border);
+										border-left: 4px solid var(--dd-accent);
+										padding: 20px 22px;
+										margin-top: 16px;
+										border-radius: 0 6px 6px 0;
+										}
+
+										.dd-translation p {
+										color: var(--dd-text);
+										margin: 0;
+										}
+
+										.dd-translation .dd-placeholder {
+										color: var(--dd-text);
+										font-style: normal;
+										font-size: 1.1rem;
+										line-height: 1.8;
+										}
+
+										/* GAMEPLAY VIDEO */
+
+										.dd-video {
+										margin-top: 40px;
+										}
+
+										.dd-video video {
+										display: block;
+										width: 100%;
+										max-height: 660px;
+										background: #080b09;
+										border-radius: 10px;
+										border: 1px solid var(--dd-border);
+										}
+
+										.dd-caption {
+										font-size: 0.95rem;
+										margin-top: 12px !important;
+										}
+
+										/* CARD COMBINATION EXAMPLE */
+
+										.dd-card-grid {
+										display: grid;
+										grid-template-columns: repeat(3, minmax(0, 1fr));
+										gap: 24px;
+										margin-top: 32px;
+										}
+
+										.dd-example-card {
+										background: var(--dd-card);
+										border: 1px solid var(--dd-border);
+										border-radius: 10px;
+										overflow: hidden;
+										min-width: 0;
+										}
+
+										.dd-example-card img {
+										display: block;
+										width: 100%;
+										aspect-ratio: 4 / 3;
+										object-fit: contain;
+										background: #101512;
+										}
+
+										.dd-example-card-content {
+										padding: 22px;
+										}
+
+										.dd-example-card h3 {
+										font-size: 1.12rem;
+										line-height: 1.4;
+										color: var(--dd-text);
+										}
+
+										.dd-example-card p {
+										font-size: 0.98rem;
+										}
+
+										.dd-example-card p:last-child {
+										margin-bottom: 0;
+										}
+
+										.dd-example-card strong {
+										color: var(--dd-text);
+										}
+
+										.dd-takeaway {
+										margin-top: 36px;
+										padding: 28px;
+										background: rgba(26, 36, 31, 0.85);
+										border: 1px solid var(--dd-border);
+										border-left: 4px solid var(--dd-accent);
+										border-radius: 0 8px 8px 0;
+										}
+
+										.dd-takeaway p {
+										margin: 0;
+										color: var(--dd-text);
+										font-size: 1.05rem;
+										line-height: 1.75;
+										}
+
+										/* NAVIGATION AND FOOTER */
+
+										.navbar .nav-contact-icon {
+										display: inline-flex;
+										align-items: center;
+										justify-content: center;
+										min-width: 28px;
+										min-height: 28px;
+										font-size: 1.2rem;
+										line-height: 1;
+										}
+
+										.navbar .linkedin-icon {
+										font-family: Arial, sans-serif;
+										font-weight: 700;
+										}
+
+										.footer .social-icons {
+										display: flex;
+										justify-content: center;
+										align-items: center;
+										gap: 1.25rem;
+										padding: 0.5rem 1rem 0.25rem;
+										}
+
+										.footer .social-icons a {
+										display: inline-flex;
+										align-items: center;
+										justify-content: center;
+										line-height: 0;
+										}
+
+										.footer .social-icons img {
+										width: 32px;
+										height: 32px;
+										margin: 0;
+										}
+
+										.footer .contact-details {
+										margin-top: 0.25rem;
+										}
+
+										.footer .contact-details p {
+										margin: 0.35rem 0;
+										}
+
+										.footer .contact-details a {
+										color: var(--text-main);
+										text-decoration: none;
+										transition: color 0.2s ease;
+										}
+
+										.footer .contact-details .contact-email {
+										color: var(--accent);
+										font-size: 1.05rem;
+										font-weight: 700;
+										}
+
+										.footer .contact-details a:hover {
+										color: var(--accent-hover);
+										text-decoration: underline;
+										}
+
+										/* RESPONSIVE */
+
+										@media (max-width: 850px) {
+										.dd-card-grid {
+										grid-template-columns: 1fr;
+										}
+
+										.dd-example-card {
+										display: grid;
+										grid-template-columns: minmax(120px, 0.8fr) minmax(0, 1.2fr);
+										}
+
+										.dd-example-card img {
+										height: 100%;
+										min-height: 200px;
+										aspect-ratio: auto;
+										}
+
+										.dd-example-card-content {
+										padding: 16px;
+										}
+										}
+
+										@media (max-width: 700px) {
+										.dd-page {
+										width: min(100% - 28px, 1280px);
+										}
+
+										.dd-hero {
+										min-height: 500px;
+										}
+
+										.dd-hero-content {
+										padding: 44px 22px 38px;
+										transform: translateY(6px);
+										}
+
+										.dd-section {
+										padding: 38px 0;
+										}
+
+										.dd-example-card {
+										display: block;
+										}
+
+										.dd-example-card img {
+										height: auto;
+										aspect-ratio: 4 / 3;
+										}
+
+										.navbar ul {
+										gap: 0.6rem 1rem;
+										}
+
+										.navbar a {
+										font-size: 0.9rem;
+										}
+										}
+
+										@media (max-width: 430px) {
+										.dd-page {
+										width: calc(100% - 28px);
+										}
+
+										.dd-hero {
+										min-height: 470px;
+										}
+
+										.dd-hero-content {
+										padding: 38px 18px 34px;
+										transform: translateY(4px);
+										}
+										}
+									</style>
+								</head>
+
+	<body>
+
+		<!-- MAIN PORTFOLIO NAVIGATION -->
+		<nav class="navbar floating" aria-label="Main navigation">
+			<ul>
+				<li>
+					<a href="../../index.html">Portfolio</a>
+				</li>
+				<li>
+					<a href="../../index.html#about">About</a>
+				</li>
+				<li>
+					<a href="../../index.html#projects">Projects</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon" href="mailto:antoni.janiak.dev@gmail.com" aria-label="Email Antoni" title="Email">
+						<span aria-hidden="true">✉</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon" href="tel:+48662786947" aria-label="Call Antoni" title="Phone">
+						<span aria-hidden="true">☎</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon linkedin-icon" href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
+						<span aria-hidden="true">in</span>
+					</a>
+				</li>
+				<li>
+					<a href="../../files/CV_en.pdf" target="_blank" rel="noopener noreferrer">
+						Resume
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+
+		<main class="dd-page">
+
+			<!-- TITLE / COVER -->
+			<section class="dd-hero">
+				<img class="dd-hero-image" src="images/dreamdeck-banner.png" alt="DreamDeck game artwork">
+
+					<div class="dd-hero-content">
+						<div class="dd-eyebrow">
+							Narrative Design Breakdown · DreamDeck
+						</div>
+
+						<h1>Combat Mechanics and Their Narrative Significance</h1>
+
+						<p class="dd-hero-subtitle">
+							How card combinations connect combat design
+							with Lucy's emotional journey.
+						</p>
+
+						<div class="dd-hero-links">
+							<a class="dd-button dd-button-primary" href="https://fellow-gamedecs.itch.io/dreamdeck" target="_blank" rel="noopener noreferrer">
+								Play DreamDeck
+							</a>
+
+							<a class="dd-button" href="../../index.html">
+								Back to Portfolio
+							</a>
+						</div>
+					</div>
+				</section>
+
+
+			<!-- PROJECT INTRODUCTION -->
+			<section class="dd-section">
+				<div class="dd-eyebrow">01 · The Project</div>
+
+				<h2>Combat Design as Storytelling</h2>
+
+				<p class="dd-lead">
+					DreamDeck is a narrative-driven card game about loss and
+					confronting its consequences. The game weaves together
+					grounded, realistic scenarios — such as interrogations and
+					newspaper clippings — with levels that gradually descend into
+					an increasingly oneiric dream world, a place Lucy retreats to.
+				</p>
+
+				<p>
+					But what is this dream world, really? The narrative plays
+					with the player's perception and understanding. Exploration
+					segments are complemented by a combat system based on
+					collecting cards that are deeply tied to Lucy's emotional
+					state.
+				</p>
+
+				<p>
+					These mechanics form an additional layer of storytelling,
+					where delving into the protagonist's psyche directly rewards
+					the player. Those who pay close attention to the narrative
+					can leverage their understanding to create powerful combat
+					combinations.
+				</p>
+
+				<div class="dd-project-credits">
+					<strong>Project:</strong> DreamDeck<br>
+				</div>
+			</section>
+
+
+			<!-- IN-GAME EXAMPLE -->
+			<section class="dd-section">
+				<div class="dd-eyebrow">02 · In-Game Example</div>
+
+				<h2>Narrative Through Card Descriptions</h2>
+
+				<figure class="dd-media-card">
+					<img src="images/combat-example.png" alt="DreamDeck combat system and card descriptions" loading="lazy">
+
+						<div class="dd-media-caption">
+							<div class="dd-translation">
+								<span class="dd-label">Design Rationale</span>
+
+								<p class="dd-placeholder">
+									The card descriptions, when used individually, tell a story from Lucy's perspective. However, Lucy is an unreliable narrator, repeatedly caught lying about her past, perhaps unknowingly, as she confuses real events with her dream world. As the player becomes more involved in her story, they can discover clues hidden in the environments of her dreams, fragments of her subconscious trying to reconnect her with the truth. By finding these clues, the player can combine cards that now tell a story from another layer and perspective. In this way, the player can delve deeper into Lucy's psyche, uncovering the true events of her story out of chronological order and gradually exploring the rabbit hole of Revega.
+								</p>
+							</div>
+						</div>
+					</figure>
+
+
+				<!-- GAMEPLAY VIDEO -->
+				<div class="dd-video">
+					<h3>Combat System in Action</h3>
+
+					<p>
+						A gameplay example demonstrating the combat system
+						and its connection to the narrative.
+					</p>
+
+					<video controls="" preload="metadata">
+						<source src="media/dreamdeck-combat.mp4" type="video/mp4">
+						Your browser does not support embedded videos.
+					</video>
+
+					<p class="dd-caption">
+						Gameplay footage from DreamDeck.
+					</p>
+				</div>
+			</section>
+
+
+			<!-- CARD COMBINATION EXAMPLE -->
+			<section class="dd-section">
+				<div class="dd-eyebrow">03 · Reading the Clues</div>
+
+				<h2>Discovering Card Synergies Through Exploration</h2>
+
+				<p class="dd-lead">
+					The player's true strength in combat lies in discovering
+					subtly hidden clues during the exploration segments that
+					hint at card combinations, and using them effectively
+					in battle.
+				</p>
+
+				<p>
+					The following example shows how an exploration clue
+					can help the player identify a useful card combination.
+				</p>
+
+				<div class="dd-card-grid">
+
+					<!-- IMAGE 1: THE HINT -->
+					<article class="dd-example-card">
+						<img src="images/combination-hint.png" alt="An in-game hint about a card combination" loading="lazy">
+
+							<div class="dd-example-card-content">
+								<span class="dd-label">Example 1 · The Hint</span>
+
+								<h3>Discovering the Clue</h3>
+
+								<div class="dd-translation">
+									<span class="dd-label">English Translation</span>
+
+									<p class="opis">
+										Lucy, on the last pages of "Revega" I hid my sketches.
+										I hid a broken dream guardian there and added new dragons!
+
+										Let me know when you see them!
+
+										– Simon
+									</p>
+								</div>
+
+								<div class="dd-translation">
+									<span class="dd-label">Design Significance</span>
+
+									<p class="dd-placeholder">
+										The note found in the world hints at a card combination that can be discovered by the player.
+									</p>
+								</div>
+							</div>
+						</article>
+
+
+					<!-- IMAGE 2: FIRST CARD -->
+					<article class="dd-example-card">
+						<img src="images/card-1.png" alt="First card used in the example combination" loading="lazy">
+
+							<div class="dd-example-card-content">
+								<span class="dd-label">Example 2 · Card A</span>
+
+								<h3>Fantasy Novel "Revega"</h3>
+
+								<div class="dd-translation">
+									<span class="dd-label">English Translation</span>
+
+									<p class="card-tags">HYBRID · Focus x2 · Narrative</p>
+
+									<p class="card-description">
+										An old novel full of colorful descriptions of Revega, which Lucy's
+										mother used to read to her in the evenings.
+									</p>
+								</div>
+
+								<div class="dd-translation">
+									<span class="dd-label">Role in the Combination</span>
+
+									<p class="dd-placeholder">
+										Found on her father’s bookshelf, Lucy suspects this book is the source of her nightmares. Played alone, it heals and draws cards.
+									</p>
+								</div>
+							</div>
+						</article>
+
+
+					<!-- IMAGE 3: SECOND CARD -->
+					<article class="dd-example-card">
+						<img src="images/card-2.png" alt="Second card used in the example combination" loading="lazy">
+
+							<div class="dd-example-card-content">
+								<span class="dd-label">Example 3 · Card B</span>
+
+								<h3>Simon's Crayons</h3>
+
+								<div class="dd-translation">
+									<span class="dd-label">English Translation</span>
+
+									<p class="card-tags">ATTACK · Magic · Creativity</p>
+
+									<p class="card-description">
+										They were everywhere - on the table, under the bed, in his jacket pockets.
+										Their purpose is endless.
+									</p>
+								</div>
+
+								<div class="dd-translation">
+									<span class="dd-label">Role in the Combination</span>
+
+									<p class="dd-placeholder">
+										A card discovered in Lucy’s dreamworld after a pivotal narrative moment. When used alone, its sole effect is dealing damage.
+									</p>
+								</div>
+							</div>
+						</article>
+
+				</div>
+
+				<div class="dd-takeaway">
+					<span class="dd-label">Design Takeaway</span>
+
+					<p class="dd-placeholder">
+						The cards work pretty well on their own, but the player is rewarded for paying attention to the narrative and discovering the hidden combination, which helps him use the story as his advantage in combat. This encourages exploration and engagement with the story, making the combat system an integral part of the overall experience.
+					</p>
+				</div>
+			</section>
+
+		</main>
+
+
+		<!-- CONTACT FOOTER -->
+		<footer class="footer">
+			<section id="contact">
+				<p class="section-kicker">GET IN TOUCH</p>
+				<h2>Let's Connect</h2>
+
+				<p>
+					Interested in game design, narrative or collaborating on a project?
+				</p>
+
+				<div class="container social-icons">
+					<a href="https://github.com/antonver12/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+						<img src="../../icons/github.svg" alt="GitHub">
+					</a>
+
+					<a href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+						<img src="../../icons/linkedin.svg" alt="LinkedIn">
+					</a>
+
+					<a href="https://antonver.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+						<img src="../../icons/itchio.svg" alt="itch.io">
+					</a>
+				</div>
+
+				<div class="contact-details">
+					<p>
+						<strong>
+							<a class="contact-email" href="mailto:antoni.janiak.dev@gmail.com">
+								antoni.janiak.dev@gmail.com
+							</a>
+						</strong>
+					</p>
+
+					<p>
+						<a class="contact-phone" href="tel:+48662786947">
+							+48 662 786 947
+						</a>
+					</p>
+				</div>
+
+				<p class="copyright">&copy; 2026 Antoni Janiak</p>
+			</section>
+		</footer>
+
+	</body>
+</html>
