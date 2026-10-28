@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Narrative design and worldbuilding breakdown of Project N-O-L, a week-long game jam investigative game set in communist-era Poland.">
+		<meta name="theme-color" content="#111817">
+
+		<title>Project N-O-L — Narrative Design Breakdown | Antoni Janiak</title>
+
+		<link rel="stylesheet" href="../../styles.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+		<style>
+			:root {
+				--nol-bg: #111413;
+				--nol-section: #171d1b;
+				--nol-card: #1e2623;
+				--nol-text: #e0e0e0;
+				--nol-muted: #aaaaaa;
+				/* Surowy, szpiegowsko-ufologiczny zielony akcent nawiązujący do klimatu PRL i monitorów */
+				--nol-accent: #33cc66;
+				--nol-accent-hover: #55ff88;
+				--nol-border: #2d3b36;
+			}
+
+			body {
+				background: var(--nol-bg);
+				color: var(--nol-text);
+				font-family: "Roboto", sans-serif;
+				line-height: 1.75;
+				margin: 0;
+				font-size: 1.05rem;
+			}
+
+			/* HERO / COVER */
+
+			.nol-page {
+				width: min(100% - 48px, 1280px);
+				margin: 0 auto;
+			}
+
+			.nol-hero {
+				position: relative;
+				min-height: 620px;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				overflow: hidden;
+				background: #151a18;
+				border-radius: 0 0 14px 14px;
+			}
+
+			.nol-hero-image {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+
+			.nol-hero::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					to top,
+					rgba(11, 15, 14, 0.98) 0%,
+					rgba(11, 15, 14, 0.75) 45%,
+					rgba(11, 15, 14, 0.20) 100%
+				);
+			}
+
+			.nol-hero-content {
+				position: relative;
+				z-index: 1;
+				width: 100%;
+				max-width: 1100px;
+				box-sizing: border-box;
+				margin: 0 auto;
+				padding: 60px 48px 52px;
+				text-align: center;
+			}
+
+			.nol-eyebrow {
+				color: #ffffff;
+				font-size: 0.9rem;
+				font-weight: 700;
+				letter-spacing: 2.2px;
+				text-transform: uppercase;
+				margin-bottom: 14px;
+			}
+
+			.nol-hero h1 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+				line-height: 1.2;
+				max-width: 980px;
+				margin: 0 auto 20px;
+				color: #ffffff;
+			}
+
+			.nol-hero-subtitle {
+				color: #d1d5d2;
+				font-size: 1.22rem;
+				max-width: 780px;
+				margin: 0 auto;
+			}
+
+			.nol-hero-links {
+				display: flex;
+				justify-content: center;
+				gap: 16px;
+				flex-wrap: wrap;
+				margin-top: 34px;
+				margin-bottom: 10px;
+			}
+
+			.nol-button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 12px 22px;
+				border: 1px solid var(--nol-accent);
+				border-radius: 6px;
+				color: var(--nol-accent);
+				text-decoration: none;
+				font-size: 1rem;
+				font-weight: 700;
+				transition: background 0.2s ease, color 0.2s ease;
+			}
+
+			.nol-button:hover {
+				background: var(--nol-accent);
+				color: #111413;
+			}
+
+			.nol-button-primary {
+				background: var(--nol-accent);
+				color: #111413;
+			}
+
+			.nol-button-primary:hover {
+				background: var(--nol-accent-hover);
+			}
+
+			/* CONTENT SECTIONS */
+
+			.nol-section {
+				padding: 64px 0;
+				border-bottom: 1px solid var(--nol-border);
+				scroll-margin-top: 85px;
+			}
+
+			.nol-section h2 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+				line-height: 1.35;
+				margin: 0 0 24px;
+				color: var(--nol-accent);
+			}
+
+			.nol-section h3 {
+				font-size: 1.25rem;
+				margin: 0 0 14px;
+			}
+
+			.nol-section p {
+				color: var(--nol-muted);
+				margin: 0 0 20px;
+			}
+
+			.nol-lead {
+				font-size: 1.18rem;
+				line-height: 1.85;
+			}
+
+			.nol-project-credits {
+				font-size: 1rem;
+				border-left: 3px solid var(--nol-accent);
+				padding-left: 18px;
+				margin-top: 28px;
+			}
+
+			.nol-project-credits strong {
+				color: var(--nol-text);
+			}
+
+			/* MEDIA & BOXES */
+
+			.nol-media-card {
+				background: var(--nol-card);
+				border: 1px solid var(--nol-border);
+				border-radius: 10px;
+				overflow: hidden;
+				margin-top: 32px;
+			}
+
+			.nol-media-card img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+
+			.nol-media-caption {
+				padding: 26px;
+			}
+
+			.nol-media-caption p:last-child {
+				margin-bottom: 0;
+			}
+
+			.nol-label {
+				display: inline-block;
+				color: var(--nol-accent);
+				font-size: 0.84rem;
+				text-transform: uppercase;
+				letter-spacing: 1.4px;
+				font-weight: 700;
+				margin-bottom: 10px;
+			}
+
+			.nol-translation {
+				background: rgba(23, 29, 27, 0.85);
+				border: 1px solid var(--nol-border);
+				border-left: 4px solid var(--nol-accent);
+				padding: 20px 22px;
+				margin-top: 16px;
+				border-radius: 0 6px 6px 0;
+			}
+
+			.nol-translation p {
+				color: var(--nol-text);
+				margin: 0;
+			}
+
+			.nol-translation .nol-placeholder {
+				color: var(--nol-text);
+				font-style: normal;
+				font-size: 1.05rem;
+				line-height: 1.8;
+			}
+
+			.nol-wip-note {
+				font-size: 0.85rem;
+				color: var(--nol-muted);
+				font-style: italic;
+				margin-top: -10px;
+				margin-bottom: 20px;
+			}
+
+			/* GALLERY GRID FOR ROOM SCREENSHOTS */
+
+			.nol-card-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 24px;
+				margin-top: 32px;
+			}
+
+			.nol-example-card {
+				background: var(--nol-card);
+				border: 1px solid var(--nol-border);
+				border-radius: 10px;
+				overflow: hidden;
+				min-width: 0;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.nol-example-card img {
+				display: block;
+				width: 100%;
+				aspect-ratio: 4 / 3;
+				object-fit: cover;
+				background: #111413;
+			}
+
+			.nol-example-card-content {
+				padding: 22px;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				justify-content: space-between;
+			}
+
+			.nol-example-card h3 {
+				font-size: 1.12rem;
+				line-height: 1.4;
+				color: var(--nol-text);
+			}
+
+			/* VIDEO SECTION */
+
+			.nol-video {
+				margin-top: 40px;
+			}
+
+			.nol-video video {
+				display: block;
+				width: 100%;
+				max-height: 660px;
+				background: #0b0f0e;
+				border-radius: 10px;
+				border: 1px solid var(--nol-border);
+			}
+
+			.nol-caption {
+				font-size: 0.95rem;
+				margin-top: 12px !important;
+			}
+
+			/* TAKEAWAYS / FINAL THOUGHTS */
+
+			.nol-takeaway {
+				margin-top: 36px;
+				padding: 28px;
+				background: rgba(23, 29, 27, 0.85);
+				border: 1px solid var(--nol-border);
+				border-left: 4px solid var(--nol-accent);
+				border-radius: 0 8px 8px 0;
+			}
+
+			.nol-takeaway p {
+				margin: 0 0 15px;
+				color: var(--nol-text);
+				font-size: 1.05rem;
+				line-height: 1.75;
+			}
+
+			.nol-takeaway p:last-child {
+				margin-bottom: 0;
+			}
+
+			/* NAVIGATION AND FOOTER */
+
+			.navbar .nav-contact-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-width: 28px;
+				min-height: 28px;
+				font-size: 1.2rem;
+				line-height: 1;
+			}
+
+			.navbar .linkedin-icon {
+				font-family: Arial, sans-serif;
+				font-weight: 700;
+			}
+
+			.footer h2 {
+				color: var(--nol-accent);
+			}
+
+			.footer .social-icons {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 1.25rem;
+				padding: 0.5rem 1rem 0.25rem;
+			}
+
+			.footer .social-icons a {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				line-height: 0;
+			}
+
+			.footer .social-icons img {
+				width: 32px;
+				height: 32px;
+				margin: 0;
+			}
+
+			.footer .contact-details {
+				margin-top: 0.25rem;
+			}
+
+			.footer .contact-details p {
+				margin: 0.35rem 0;
+			}
+
+			.footer .contact-details a {
+				color: var(--text-main);
+				text-decoration: none;
+				transition: color 0.2s ease;
+			}
+
+			.footer .contact-details .contact-email {
+				color: var(--nol-accent);
+				font-size: 1.05rem;
+				font-weight: 700;
+			}
+
+			.footer .contact-details a:hover {
+				color: var(--nol-accent-hover);
+				text-decoration: underline;
+			}
+
+			/* RESPONSIVE */
+
+			@media (max-width: 850px) {
+				.nol-card-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 700px) {
+				.nol-page {
+					width: min(100% - 28px, 1280px);
+				}
+
+				.nol-hero {
+					min-height: 500px;
+				}
+
+				.nol-hero-content {
+					padding: 44px 22px 38px;
+				}
+
+				.nol-section {
+					padding: 38px 0;
+				}
+
+				.navbar ul {
+					gap: 0.6rem 1rem;
+				}
+
+				.navbar a {
+					font-size: 0.9rem;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- MAIN PORTFOLIO NAVIGATION -->
+		<nav class="navbar floating" aria-label="Main navigation">
+			<ul>
+				<li><a href="../../index.html">Portfolio</a></li>
+				<li><a href="../../index.html#about">About</a></li>
+				<li><a href="../../index.html#projects">Projects</a></li>
+				<li>
+					<a class="nav-contact-icon" href="mailto:antoni.janiak.dev@gmail.com" aria-label="Email Antoni" title="Email">
+						<span aria-hidden="true">✉</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon" href="tel:+48662786947" aria-label="Call Antoni" title="Phone">
+						<span aria-hidden="true">☎</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon linkedin-icon" href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
+						<span aria-hidden="true">in</span>
+					</a>
+				</li>
+				<li><a href="../../files/CV_en.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+			</ul>
+		</nav>
+
+
+		<main class="nol-page">
+
+			<!-- TITLE / COVER (HERO BANNER) -->
+			<section class="nol-hero">
+				<img class="nol-hero-image" src="images/nol-banner.png" alt="Project N-O-L game artwork" loading="lazy">
+
+				<div class="nol-hero-content">
+					<div class="nol-eyebrow">
+						Narrative Design Breakdown · Project N-O-L
+					</div>
+
+					<h1>Investigating UFOs in Communist-Era Poland</h1>
+
+					<p class="nol-hero-subtitle">
+						Developed during a 1-week game jam as Narrative Designer and Writer, turning environmental cues and cryptic clues into an immersive investigative puzzle with 5 distinct endings.
+					</p>
+
+					<div class="nol-hero-links">
+						<a class="nol-button nol-button-primary" href="https://antonver.itch.io/project-n-o-l" target="_blank" rel="noopener noreferrer">
+							Play on Itch.io
+						</a>
+						<a class="nol-button" href="../../index.html">
+							Back to Portfolio
+						</a>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- 01: THE BASE & LEVEL DESIGN -->
+			<section class="nol-section">
+				<div class="nol-eyebrow">01 · Worldbuilding & Environmental Storytelling</div>
+
+				<h2>The Conspiracy Theorist's Basement (Blockout & Layout)</h2>
+
+				<p class="nol-lead">
+					Created during a week-long game jam, Project N-O-L places the player in the shoes of a UFO fanatic operating in communist-era Poland. Operating from a cramped, dreary basement in a concrete prefab block of flats (*wielka płyta*), the physical layout of the room is essential for storytelling.
+				</p>
+
+				<p>
+					I designed the blockout and layout of the basement to instantly communicate the authentic "conspiracy uncle" (*szuryczny wujaszek*) vibe through environmental design:
+				</p>
+
+				<div class="nol-card-grid">
+					<article class="nol-example-card">
+						<img src="images/nol-corkboard.png" alt="Corkboard with clues" loading="lazy">
+						<div class="nol-example-card-content">
+							<div>
+								<span class="nol-label">Zone 01</span>
+								<h3>The Corkboard</h3>
+								<p>Covered in interconnected notes, press clippings, and string mapping out alleged extraterrestrial sightings and government cover-ups.</p>
+							</div>
+						</div>
+					</article>
+
+					<article class="nol-example-card">
+						<img src="images/nol-desk-decor.png" alt="Scratched desk with Polish cultural references" loading="lazy">
+						<div class="nol-example-card-content">
+							<div>
+								<span class="nol-label">Zone 02</span>
+								<h3>The Side Desk</h3>
+								<p>Scratched surfaces featuring nostalgic Polish pop-culture references of the era alongside emblems of the local football team the uncle passionately roots for.</p>
+							</div>
+						</div>
+					</article>
+
+					<article class="nol-example-card">
+						<img src="images/nol-main-desk.png" alt="Main operational base desk with equipment" loading="lazy">
+						<div class="nol-example-card-content">
+							<div>
+								<span class="nol-label">Zone 03</span>
+								<h3>The Main Operational Desk</h3>
+								<p>The true heart of operations holding classified files, newspaper clippings, and the vital equipment needed to trigger contact.</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="nol-project-credits" style="margin-top: 30px;">
+					<strong>Design Significance:</strong> Every prop and its placement tell a story of isolation, obsession, and historical context under communist rule.
+				</div>
+			</section>
+
+
+			<!-- 02: NARRATIVE FLOW & PUZZLES -->
+			<section class="nol-section">
+				<div class="nol-eyebrow">02 · Narrative Flow & Puzzles</div>
+
+				<h2>Weaving Clues Into Text Across 5 Endings</h2>
+
+				<p class="nol-lead">
+					Designing the investigation required building a coherent puzzle flow where hints embedded directly within in-game texts (like newspapers and secret documents) guide the player toward specific thematic conclusions.
+				</p>
+
+				<p>
+					The game features **5 distinct endings**, each tied directly to how the player interprets clues and combines frequencies, signals, and items. Every hint maintains strict narrative consistency with the communist-era setting and the protagonist's eccentric worldview.
+				</p>
+
+				<div class="nol-media-card">
+					<img src="images/nol-newspaper-hint.png" alt="Newspaper clipping puzzle hint example" loading="lazy">
+					<div class="nol-media-caption">
+						<span class="nol-label">Example · Environmental Text Clue</span>
+						<div class="nol-translation">
+							<p class="nol-placeholder">
+								"The mysterious night disturbance near the tractor factory was dismissed as industrial equipment malfunction, but workers reported rhythmic humming matching local broadcast frequencies..."
+							</p>
+						</div>
+						<p class="nol-wip-note" style="margin-top: 14px; margin-bottom: 0;">*Note: The text shown in the screenshot has been translated from Polish to English for clarity, though the game itself is in Polish.*</p>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- 03: THE EQUIPMENT & GAMEPLAY -->
+			<section class="nol-section">
+				<div class="nol-eyebrow">03 · Mechanics & Interaction</div>
+
+				<h2>The Operational Base: Microwave, Bulbulator, and Radio</h2>
+
+				<p class="nol-lead">
+					Once clues are gathered from newspapers, television signals, and radio broadcasts, the player interacts with eccentric hardware to attempt communication.
+				</p>
+
+				<p>
+					The core loop revolves around taking data extracted from environmental storytelling and translating it into settings for bizarre summoning devices.
+				</p>
+
+				<div class="nol-video">
+					<video controls="" preload="metadata">
+						<source src="media/nol-gameplay.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<p class="nol-caption">
+						Gameplay recording demonstrating how clues from documents are applied to equipment like the radio and microwave.
+					</p>
+				</div>
+			</section>
+
+
+			<!-- 04: FINAL THOUGHTS -->
+			<section class="nol-section">
+				<div class="nol-eyebrow">04 · Design Takeaways</div>
+
+				<h2>What I Learned from Project N-O-L</h2>
+
+				<div class="nol-takeaway">
+					<span class="nol-label">Key Takeaway 01 · Audiovisual Cohesion</span>
+					<p>
+						Audio must serve the narrative deeply. The music and broadcasts playing on the radio need authentic thematic context within the game's universe to sell the atmosphere effectively.
+					</p>
+
+					<span class="nol-label" style="display:inline-block; margin-top: 10px;">Key Takeaway 02 · Interior Layout & Worldbuilding</span>
+					<p>
+						The spatial arrangement of a room is a powerful storytelling tool. Proper layout instantly communicates character psychology, historical context, and narrative tone without relying on exposition.
+					</p>
+
+					<span class="nol-label" style="display:inline-block; margin-top: 10px;">Key Takeaway 03 · Scoping & Player Guidance</span>
+					<p>
+						In games featuring abstract settings and heavy reading elements, adding a clear, well-structured onboarding tutorial is critical to prevent player frustration and ensure smooth puzzle flow.
+					</p>
+				</div>
+			</section>
+
+		</main>
+
+
+		<!-- CONTACT FOOTER -->
+		<footer class="footer">
+			<section id="contact">
+				<p class="section-kicker">GET IN TOUCH</p>
+				<h2>Let's Connect</h2>
+
+				<p>
+					Interested in game design, narrative or collaborating on a project?
+				</p>
+
+				<div class="container social-icons">
+					<a href="https://github.com/antonver12/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+						<img src="../../icons/github.svg" alt="GitHub">
+					</a>
+
+					<a href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+						<img src="../../icons/linkedin.svg" alt="LinkedIn">
+					</a>
+
+					<a href="https://antonver.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+						<img src="../../icons/itchio.svg" alt="itch.io">
+					</a>
+				</div>
+
+				<div class="contact-details">
+					<p>
+						<strong>
+							<a class="contact-email" href="mailto:antoni.janiak.dev@gmail.com">
+								antoni.janiak.dev@gmail.com
+							</a>
+						</strong>
+					</p>
+
+					<p>
+						<a class="contact-phone" href="tel:+48662786947">
+							+48 662 786 947
+						</a>
+					</p>
+				</div>
+
+				<p class="copyright">&copy; 2026 Antoni Janiak</p>
+			</section>
+		</footer>
+
+	</body>
+</html>
