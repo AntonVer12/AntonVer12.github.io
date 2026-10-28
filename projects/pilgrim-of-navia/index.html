@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Level Design, Team Management, and System Integration breakdown for Pilgrim of Navia - a PS2-inspired survival horror immersive sim.">
+		<meta name="theme-color" content="#181a19">
+
+		<title>Pilgrim of Navia — Game & Level Design Breakdown | Antoni Janiak</title>
+
+		<link rel="stylesheet" href="../../styles.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+		<style>
+			:root {
+				--pon-bg: #181a19;
+				--pon-section: #222624;
+				--pon-card: #2b302d;
+				--pon-card-border: #48544e;
+				--pon-text: #f0f2f0;
+				--pon-muted: #c2cdc7;
+				--pon-accent: #d4af37;
+				--pon-accent-hover: #e6c555;
+			}
+
+			body {
+				background: var(--pon-bg);
+				color: var(--pon-text);
+				font-family: "Roboto", sans-serif;
+				line-height: 1.8;
+				margin: 0;
+				font-size: 1.05rem;
+			}
+
+			/* HERO / COVER */
+
+			.pon-page {
+				width: min(100% - 48px, 1280px);
+				margin: 0 auto;
+			}
+
+			.pon-hero {
+				position: relative;
+				min-height: 520px;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				overflow: hidden;
+				background: var(--pon-section);
+				border-radius: 0 0 14px 14px;
+				border: 2px solid var(--pon-card-border);
+				border-top: none;
+			}
+
+			.pon-hero-image {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+
+			.pon-hero::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					to top,
+					rgba(24, 26, 25, 0.95) 0%,
+					rgba(34, 38, 36, 0.70) 50%,
+					rgba(34, 38, 36, 0.25) 100%
+				);
+			}
+
+			.pon-hero-content {
+				position: relative;
+				z-index: 1;
+				width: 100%;
+				max-width: 1100px;
+				box-sizing: border-box;
+				margin: 0 auto;
+				padding: 50px 48px 40px;
+				text-align: center;
+			}
+
+			.pon-eyebrow {
+				color: #ffffff;
+				font-size: 0.9rem;
+				font-weight: 700;
+				letter-spacing: 2.2px;
+				text-transform: uppercase;
+				margin-bottom: 14px;
+			}
+
+			.pon-hero h1 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+				line-height: 1.2;
+				max-width: 980px;
+				margin: 0 auto 20px;
+				color: #ffffff;
+			}
+
+			.pon-hero-subtitle {
+				color: #e2e8e5;
+				font-size: 1.22rem;
+				max-width: 780px;
+				margin: 0 auto;
+			}
+
+			.pon-hero-links {
+				display: flex;
+				justify-content: center;
+				gap: 16px;
+				flex-wrap: wrap;
+				margin-top: 28px;
+			}
+
+			.pon-button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 12px 22px;
+				border: 2px solid var(--pon-card-border);
+				border-radius: 6px;
+				color: #ffffff;
+				text-decoration: none;
+				font-size: 1rem;
+				font-weight: 700;
+				background: rgba(43, 48, 45, 0.8);
+				transition: all 0.2s ease;
+			}
+
+			.pon-button:hover {
+				background: #ffffff;
+				border-color: #ffffff;
+				color: var(--pon-bg);
+			}
+
+			.pon-button-primary {
+				background: var(--pon-accent);
+				border-color: var(--pon-accent);
+				color: #181a19;
+			}
+
+			.pon-button-primary:hover {
+				background: #ffffff;
+				border-color: #ffffff;
+				color: #181a19;
+			}
+
+			/* METADATA QUICK STATS BAR (NOWOŚĆ POD BANEREM) */
+
+			.pon-meta-bar {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				gap: 16px;
+				margin-top: 32px;
+			}
+
+			.pon-meta-item {
+				background: var(--pon-card);
+				border: 1px solid var(--pon-card-border);
+				border-radius: 8px;
+				padding: 18px;
+				text-align: center;
+			}
+
+			.pon-meta-label {
+				display: block;
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+				color: var(--pon-accent);
+				font-weight: 700;
+				margin-bottom: 6px;
+			}
+
+			.pon-meta-value {
+				font-size: 1.05rem;
+				color: #ffffff;
+				font-weight: 500;
+			}
+
+			/* CONTENT SECTIONS */
+
+			.pon-section {
+				padding: 54px 36px;
+				margin-top: 32px;
+				background: var(--pon-section);
+				border-radius: 12px;
+				border: 1px solid var(--pon-card-border);
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+				scroll-margin-top: 85px;
+			}
+
+			.pon-section h2 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+				line-height: 1.35;
+				margin: 0 0 20px;
+				color: var(--pon-accent);
+			}
+
+			.pon-section h3 {
+				font-size: 1.25rem;
+				margin: 0 0 12px;
+				color: #ffffff;
+			}
+
+			.pon-section p {
+				color: var(--pon-muted);
+				margin: 0 0 18px;
+			}
+
+			.pon-lead {
+				font-size: 1.15rem;
+				line-height: 1.8;
+				color: #ffffff !important;
+				font-weight: 500;
+			}
+
+			.pon-label {
+				display: inline-block;
+				color: var(--pon-accent);
+				font-size: 0.84rem;
+				text-transform: uppercase;
+				letter-spacing: 1.4px;
+				font-weight: 700;
+				margin-bottom: 8px;
+			}
+
+			/* ROLE BREAKDOWN BULLET CARDS */
+
+			.pon-roles-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 20px;
+				margin-top: 28px;
+			}
+
+			.pon-role-card {
+				background: var(--pon-card);
+				border: 1px solid var(--pon-card-border);
+				border-top: 4px solid var(--pon-accent);
+				border-radius: 8px;
+				padding: 22px;
+			}
+
+			.pon-role-card h3 {
+				font-size: 1.1rem;
+				margin-bottom: 10px;
+				color: #ffffff;
+			}
+
+			.pon-role-card ul {
+				margin: 0;
+				padding-left: 18px;
+				color: var(--pon-muted);
+			}
+
+			.pon-role-card li {
+				margin-bottom: 8px;
+				font-size: 0.96rem;
+			}
+
+			/* GRID FOR PIPELINE & SCREENSHOTS */
+
+			.pon-card-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 24px;
+				margin-top: 28px;
+			}
+
+			.pon-example-card {
+				background: var(--pon-card);
+				border: 1px solid var(--pon-card-border);
+				border-radius: 10px;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+			}
+
+			.pon-example-card img {
+				display: block;
+				width: 100%;
+				aspect-ratio: 16 / 10;
+				object-fit: cover;
+				background: #181a19;
+			}
+
+			.pon-example-card-content {
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				justify-content: space-between;
+			}
+
+			.pon-example-card h3 {
+				font-size: 1.15rem;
+				margin-bottom: 6px;
+				color: #ffffff;
+			}
+
+			/* VIDEO SECTION */
+
+			.pon-video {
+				margin-top: 32px;
+			}
+
+			.pon-video video {
+				display: block;
+				width: 100%;
+				max-height: 660px;
+				background: #121413;
+				border-radius: 8px;
+				border: 1px solid var(--pon-card-border);
+			}
+
+			.pon-caption {
+				font-size: 0.95rem;
+				margin-top: 10px !important;
+				color: var(--pon-muted);
+			}
+
+			/* TAKEAWAYS / LEARNINGS */
+
+			.pon-takeaway {
+				margin-top: 24px;
+				padding: 24px;
+				background: var(--pon-card);
+				border: 1px solid var(--pon-card-border);
+				border-left: 5px solid var(--pon-accent);
+				border-radius: 0 8px 8px 0;
+			}
+
+			.pon-takeaway p {
+				margin: 0 0 14px;
+				color: var(--pon-muted);
+				font-size: 1.02rem;
+				line-height: 1.7;
+			}
+
+			.pon-takeaway p:last-child {
+				margin-bottom: 0;
+			}
+
+			/* NAVIGATION AND FOOTER OVERRIDES */
+
+			.navbar {
+				background: rgba(34, 38, 36, 0.9);
+				border-color: var(--pon-card-border);
+			}
+
+			.navbar a {
+				color: #ffffff;
+			}
+
+			.footer {
+				background: var(--pon-section);
+				color: #ffffff;
+				margin-top: 48px;
+				border-top: 1px solid var(--pon-card-border);
+			}
+
+			.footer h2 {
+				color: #ffffff;
+			}
+
+			.footer p, .footer a {
+				color: var(--pon-muted);
+			}
+
+			.footer .contact-details .contact-email {
+				color: var(--pon-accent);
+			}
+
+			/* RESPONSIVE */
+
+			@media (max-width: 900px) {
+				.pon-meta-bar {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+				.pon-roles-grid {
+					grid-template-columns: 1fr;
+				}
+				.pon-card-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 700px) {
+				.pon-page {
+					width: min(100% - 24px, 1280px);
+				}
+				.pon-hero {
+					min-height: 440px;
+				}
+				.pon-hero-content {
+					padding: 36px 18px 30px;
+				}
+				.pon-section {
+					padding: 32px 20px;
+				}
+				.pon-meta-bar {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- MAIN PORTFOLIO NAVIGATION -->
+		<nav class="navbar floating" aria-label="Main navigation">
+			<ul>
+				<li><a href="../../index.html">Portfolio</a></li>
+				<li><a href="../../index.html#about">About</a></li>
+				<li><a href="../../index.html#projects">Projects</a></li>
+				<li>
+					<a class="nav-contact-icon" href="mailto:antoni.janiak.dev@gmail.com" aria-label="Email Antoni" title="Email">
+						<span aria-hidden="true">✉</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon" href="tel:+48662786947" aria-label="Call Antoni" title="Phone">
+						<span aria-hidden="true">☎</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon linkedin-icon" href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
+						<span aria-hidden="true">in</span>
+					</a>
+				</li>
+				<li><a href="../../files/CV_en.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+			</ul>
+		</nav>
+
+
+		<main class="pon-page">
+
+			<!-- TITLE / COVER (HERO BANNER) -->
+			<section class="pon-hero">
+				<img class="pon-hero-image" src="images/pon-banner.png" alt="Pilgrim of Navia game artwork" loading="lazy">
+
+				<div class="pon-hero-content">
+					<div class="pon-eyebrow">
+						Game & Level Design Breakdown · Pilgrim of Navia
+					</div>
+
+					<h1>Designing a PS2-Inspired Survival Horror Immersive Sim</h1>
+
+					<p class="pon-hero-subtitle">
+						An ongoing, ambitious student project focused on non-linear exploration, immersive environmental storytelling, and complete player agency.
+					</p>
+
+					<div class="pon-hero-links">
+						<a class="pon-button pon-button-primary" href="https://drive.google.com/file/d/1A0jhvjd8nnwuqSncXz3XRprgfMB_hoCm/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+							📄 View Full Design Documentation
+						</a>
+						<a class="pon-button" href="../../index.html">
+							Back to Portfolio
+						</a>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- METADATA QUICK STATS BAR (WBUDOWANA POD BANEREM) -->
+			<div class="pon-meta-bar">
+				<div class="pon-meta-item">
+					<span class="pon-meta-label">Genre</span>
+					<span class="pon-meta-value">Survival Horror Immersive Sim</span>
+				</div>
+				<div class="pon-meta-item">
+					<span class="pon-meta-label">Engine</span>
+					<span class="pon-meta-value">Unity (C#)</span>
+				</div>
+				<div class="pon-meta-item">
+					<span class="pon-meta-label">Development Time</span>
+					<span class="pon-meta-value">Ongoing (Long-term project)</span>
+				</div>
+				<div class="pon-meta-item">
+					<span class="pon-meta-label">Team Size</span>
+					<span class="pon-meta-value">Small Student Research Club</span>
+				</div>
+			</div>
+
+
+			<!-- 01: TEAM MANAGEMENT & RESPONSIBILITIES -->
+			<section class="pon-section">
+				<div class="pon-eyebrow">01 · Leadership & Responsibilities</div>
+
+				<h2>My Role & Core Scope of Work</h2>
+
+				<p class="pon-lead">
+					As Lead Designer, my responsibility bridges creative vision, spatial architecture, and technical execution across iterative development sprints.
+				</p>
+
+				<!-- KONKRETNE PUNKTORY GRAFICZNE (KAFELKI ODPOWIEDZIALNOŚCI) -->
+				<div class="pon-roles-grid">
+					<div class="pon-role-card">
+						<h3>🎯 Lead Design & Direction</h3>
+						<ul>
+							<li>Establishing original core concept and tone.</li>
+							<li>Managing milestone tasks and team sprint planning.</li>
+							<li>Maintaining cross-disciplinary alignment (art, code, design).</li>
+						</ul>
+					</div>
+
+					<div class="pon-role-card">
+						<h3>🗺️ Level Design & Pacing</h3>
+						<ul>
+							<li>Designing architecture for non-linear player agency.</li>
+							<li>Creating detailed blockouts, floor plans, and diagrams.</li>
+							<li>Directing atmosphere through lighting and fog.</li>
+						</ul>
+					</div>
+
+					<div class="pon-role-card">
+						<h3>⚙️ System Integration</h3>
+						<ul>
+							<li>Prototyping ideas and testing mechanics in Unity.</li>
+							<li>Integrating programmer-built C# scripts into gameplay.</li>
+							<li>Configuring interactable prefabs and triggers.</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- 02: LEVEL DESIGN & IMMERSIVE SIM PIPELINE -->
+			<section class="pon-section">
+				<div class="pon-eyebrow">02 · Level Design Pipeline & Architecture</div>
+
+				<h2>Designing Spaces for Emergent Gameplay</h2>
+
+				<p class="pon-lead">
+					The central challenge was crafting levels for an immersive sim framework—granting players multiple paths and systemic solutions instead of linear corridors.
+				</p>
+
+				<div class="pon-card-grid">
+					<article class="pon-example-card">
+						<img src="images/pon-blockout.png" alt="Greybox / Blockout level stage" loading="lazy">
+						<div class="pon-example-card-content">
+							<div>
+								<span class="pon-label">Stage 01</span>
+								<h3>Initial Blockout</h3>
+								<p>Establishing sightlines, spatial pacing, cover points, and multi-path navigation from floor plans.</p>
+							</div>
+						</div>
+					</article>
+
+					<article class="pon-example-card">
+						<img src="images/pon-lighting.png" alt="Lighting and asset placement stage" loading="lazy">
+						<div class="pon-example-card-content">
+							<div>
+								<span class="pon-label">Stage 02</span>
+								<h3>Lighting & Atmosphere</h3>
+								<p>Iterating on contrast and retro PS2 lighting aesthetics to guide player focus without intrusive UI.</p>
+							</div>
+						</div>
+					</article>
+
+					<article class="pon-example-card">
+						<img src="images/pon-environmental.png" alt="Final environmental storytelling stage" loading="lazy">
+						<div class="pon-example-card-content">
+							<div>
+								<span class="pon-label">Stage 03</span>
+								<h3>Environmental Storytelling</h3>
+								<p>Populating spaces with narrative props and interactive world details that reward thorough exploration.</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="pon-hero-links" style="justify-content: flex-start; margin-top: 28px;">
+					<a class="pon-button" href="https://drive.google.com/file/d/1A0jhvjd8nnwuqSncXz3XRprgfMB_hoCm/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+						📊 View Full Level Design Diagrams & Documentation
+					</a>
+				</div>
+			</section>
+
+
+			<!-- 03: SYSTEM INTEGRATION IN UNITY -->
+			<section class="pon-section">
+				<div class="pon-eyebrow">03 · Technical Implementation</div>
+
+				<h2>Unity Integration & Playable Build Setup</h2>
+
+				<p class="pon-lead">
+					Bridging the gap between code and design by taking programmer-built C# modules and turning them into functional, robust gameplay loops.
+				</p>
+
+				<div class="pon-video">
+					<video controls="" preload="metadata">
+						<source src="media/pon-setup-gameplay.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<p class="pon-caption">
+						Video showcasing system integration in Unity: setting up prefabs, trigger interactions, and testing real-time level mechanics.
+					</p>
+				</div>
+			</section>
+
+
+			<!-- 04: COMMUNITY & EXHIBITIONS -->
+			<section class="pon-section">
+				<div class="pon-eyebrow">04 · Exhibition & Social Presence</div>
+
+				<h2>Public Showcase & Development Tracking</h2>
+
+				<p class="pon-lead">
+					We exhibited *Pilgrim of Navia* publicly at the **Hello GameDev** conference, gathering invaluable live playtest feedback from attendees.
+				</p>
+
+				<div class="pon-hero-links" style="justify-content: flex-start; margin-top: 20px;">
+					<a class="pon-button pon-button-primary" href="TUTAJ_LINK_DO_INSTAGRAMA_PILGRIM" target="_blank" rel="noopener noreferrer">
+						📸 Follow Pilgrim of Navia on Instagram
+					</a>
+				</div>
+			</section>
+
+
+			<!-- 05: WHAT I HAVE LEARNED -->
+			<section class="pon-section">
+				<div class="pon-eyebrow">05 · Retrospective</div>
+
+				<h2>What I Have Learned</h2>
+
+				<div class="pon-takeaway">
+					<span class="pon-label">01 · Designing for Unpredictable Player Behavior</span>
+					<p>
+						Building an immersive sim taught me to abandon linear script assumptions. Levels must be resilient to creative player choices, requiring clear readability and robust systemic fallback paths.
+					</p>
+
+					<span class="pon-label" style="display:inline-block; margin-top: 10px;">02 · Production Leadership & Scoping</span>
+					<p>
+						Managing a long-term student team reinforced the value of realistic milestone scoping, clear communication, and empowering team members while keeping the central creative vision intact.
+					</p>
+
+					<span class="pon-label" style="display:inline-block; margin-top: 10px;">03 · Technical Level Design & Lighting</span>
+					<p>
+						Lighting isn't just visual polish—it is a critical navigation tool. Mastering Unity light setups, volumetric fog, and prefab workflows allowed me to guide player movement naturally without relying on artificial markers.
+					</p>
+
+					<span class="pon-label" style="display:inline-block; margin-top: 10px;">04 · Public Playtesting & Feedback Loop</span>
+					<p>
+						Exhibiting at *Hello GameDev* highlighted the importance of watching raw, unguided gameplay. Observing players tackle encounters revealed critical insights into spatial navigation and UI feedback that informed our next sprint iterations.
+					</p>
+				</div>
+			</section>
+
+		</main>
+
+
+		<!-- CONTACT FOOTER -->
+		<footer class="footer">
+			<section id="contact">
+				<p class="section-kicker">GET IN TOUCH</p>
+				<h2>Let's Connect</h2>
+
+				<p>
+					Interested in game design, narrative or collaborating on a project?
+				</p>
+
+				<div class="container social-icons">
+					<a href="https://github.com/antonver12/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+						<img src="../../icons/github.svg" alt="GitHub">
+					</a>
+
+					<a href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+						<img src="../../icons/linkedin.svg" alt="LinkedIn">
+					</a>
+
+					<a href="https://antonver.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+						<img src="../../icons/itchio.svg" alt="itch.io">
+					</a>
+				</div>
+
+				<div class="contact-details">
+					<p>
+						<strong>
+							<a class="contact-email" href="mailto:antoni.janiak.dev@gmail.com">
+								antoni.janiak.dev@gmail.com
+							</a>
+						</strong>
+					</p>
+
+					<p>
+						<a class="contact-phone" href="tel:+48662786947">
+							+48 662 786 947
+						</a>
+					</p>
+				</div>
+
+				<p class="copyright">&copy; 2026 Antoni Janiak</p>
+			</section>
+		</footer>
+
+	</body>
+</html>

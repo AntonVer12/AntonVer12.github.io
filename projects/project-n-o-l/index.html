@@ -17,12 +17,12 @@
 				--nol-bg: #111413;
 				--nol-section: #171d1b;
 				--nol-card: #1e2623;
+				--nol-card-border: #2d3b36;
 				--nol-text: #e0e0e0;
 				--nol-muted: #aaaaaa;
 				/* Surowy, szpiegowsko-ufologiczny zielony akcent nawiązujący do klimatu PRL i monitorów */
 				--nol-accent: #33cc66;
 				--nol-accent-hover: #55ff88;
-				--nol-border: #2d3b36;
 			}
 
 			body {
@@ -43,13 +43,15 @@
 
 			.nol-hero {
 				position: relative;
-				min-height: 620px;
+				min-height: 520px;
 				display: flex;
 				align-items: flex-end;
 				justify-content: center;
 				overflow: hidden;
-				background: #151a18;
+				background: var(--nol-section);
 				border-radius: 0 0 14px 14px;
+				border: 2px solid var(--nol-card-border);
+				border-top: none;
 			}
 
 			.nol-hero-image {
@@ -67,9 +69,9 @@
 				inset: 0;
 				background: linear-gradient(
 					to top,
-					rgba(11, 15, 14, 0.98) 0%,
-					rgba(11, 15, 14, 0.75) 45%,
-					rgba(11, 15, 14, 0.20) 100%
+					rgba(11, 15, 14, 0.95) 0%,
+					rgba(23, 29, 27, 0.70) 50%,
+					rgba(23, 29, 27, 0.25) 100%
 				);
 			}
 
@@ -80,7 +82,7 @@
 				max-width: 1100px;
 				box-sizing: border-box;
 				margin: 0 auto;
-				padding: 60px 48px 52px;
+				padding: 50px 48px 40px;
 				text-align: center;
 			}
 
@@ -114,8 +116,7 @@
 				justify-content: center;
 				gap: 16px;
 				flex-wrap: wrap;
-				margin-top: 34px;
-				margin-bottom: 10px;
+				margin-top: 28px;
 			}
 
 			.nol-button {
@@ -123,79 +124,158 @@
 				align-items: center;
 				justify-content: center;
 				padding: 12px 22px;
-				border: 1px solid var(--nol-accent);
+				border: 2px solid var(--nol-card-border);
 				border-radius: 6px;
 				color: var(--nol-accent);
 				text-decoration: none;
 				font-size: 1rem;
 				font-weight: 700;
-				transition: background 0.2s ease, color 0.2s ease;
+				background: rgba(30, 38, 35, 0.8);
+				transition: all 0.2s ease;
 			}
 
 			.nol-button:hover {
 				background: var(--nol-accent);
+				border-color: var(--nol-accent);
 				color: #111413;
 			}
 
 			.nol-button-primary {
 				background: var(--nol-accent);
+				border-color: var(--nol-accent);
 				color: #111413;
 			}
 
 			.nol-button-primary:hover {
 				background: var(--nol-accent-hover);
+				border-color: var(--nol-accent-hover);
+				color: #111413;
+			}
+
+			/* METADATA QUICK STATS BAR (POD BANEREM) */
+
+			.nol-meta-bar {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				gap: 16px;
+				margin-top: 32px;
+			}
+
+			.nol-meta-item {
+				background: var(--nol-card);
+				border: 1px solid var(--nol-card-border);
+				border-radius: 8px;
+				padding: 18px;
+				text-align: center;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+			}
+
+			.nol-meta-label {
+				display: block;
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+				color: var(--nol-accent);
+				font-weight: 700;
+				margin-bottom: 6px;
+			}
+
+			.nol-meta-value {
+				font-size: 1.05rem;
+				color: #ffffff;
+				font-weight: 500;
 			}
 
 			/* CONTENT SECTIONS */
 
 			.nol-section {
-				padding: 64px 0;
-				border-bottom: 1px solid var(--nol-border);
+				padding: 54px 36px;
+				margin-top: 32px;
+				background: var(--nol-section);
+				border-radius: 12px;
+				border: 1px solid var(--nol-card-border);
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 				scroll-margin-top: 85px;
 			}
 
 			.nol-section h2 {
 				font-family: "Orbitron", sans-serif;
-				font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+				font-size: clamp(1.6rem, 3.2vw, 2.2rem);
 				line-height: 1.35;
-				margin: 0 0 24px;
+				margin: 0 0 20px;
 				color: var(--nol-accent);
 			}
 
 			.nol-section h3 {
 				font-size: 1.25rem;
-				margin: 0 0 14px;
+				margin: 0 0 12px;
+				color: #ffffff;
 			}
 
 			.nol-section p {
 				color: var(--nol-muted);
-				margin: 0 0 20px;
+				margin: 0 0 18px;
 			}
 
 			.nol-lead {
-				font-size: 1.18rem;
-				line-height: 1.85;
+				font-size: 1.15rem;
+				line-height: 1.8;
+				color: #ffffff !important;
+				font-weight: 500;
 			}
 
-			.nol-project-credits {
-				font-size: 1rem;
-				border-left: 3px solid var(--nol-accent);
-				padding-left: 18px;
+			.nol-label {
+				display: inline-block;
+				color: var(--nol-accent);
+				font-size: 0.84rem;
+				text-transform: uppercase;
+				letter-spacing: 1.4px;
+				font-weight: 700;
+				margin-bottom: 8px;
+			}
+
+			/* ROLE BREAKDOWN CARDS */
+
+			.nol-roles-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 20px;
 				margin-top: 28px;
 			}
 
-			.nol-project-credits strong {
-				color: var(--nol-text);
+			.nol-role-card {
+				background: var(--nol-card);
+				border: 1px solid var(--nol-card-border);
+				border-top: 4px solid var(--nol-accent);
+				border-radius: 8px;
+				padding: 22px;
+			}
+
+			.nol-role-card h3 {
+				font-size: 1.1rem;
+				margin-bottom: 10px;
+				color: #ffffff;
+			}
+
+			.nol-role-card ul {
+				margin: 0;
+				padding-left: 18px;
+				color: var(--nol-muted);
+			}
+
+			.nol-role-card li {
+				margin-bottom: 8px;
+				font-size: 0.96rem;
 			}
 
 			/* MEDIA & BOXES */
 
 			.nol-media-card {
 				background: var(--nol-card);
-				border: 1px solid var(--nol-border);
+				border: 1px solid var(--nol-card-border);
 				border-radius: 10px;
 				overflow: hidden;
-				margin-top: 32px;
+				margin-top: 28px;
 			}
 
 			.nol-media-card img {
@@ -212,19 +292,9 @@
 				margin-bottom: 0;
 			}
 
-			.nol-label {
-				display: inline-block;
-				color: var(--nol-accent);
-				font-size: 0.84rem;
-				text-transform: uppercase;
-				letter-spacing: 1.4px;
-				font-weight: 700;
-				margin-bottom: 10px;
-			}
-
 			.nol-translation {
 				background: rgba(23, 29, 27, 0.85);
-				border: 1px solid var(--nol-border);
+				border: 1px solid var(--nol-card-border);
 				border-left: 4px solid var(--nol-accent);
 				padding: 20px 22px;
 				margin-top: 16px;
@@ -257,12 +327,12 @@
 				display: grid;
 				grid-template-columns: repeat(3, minmax(0, 1fr));
 				gap: 24px;
-				margin-top: 32px;
+				margin-top: 28px;
 			}
 
 			.nol-example-card {
 				background: var(--nol-card);
-				border: 1px solid var(--nol-border);
+				border: 1px solid var(--nol-card-border);
 				border-radius: 10px;
 				overflow: hidden;
 				min-width: 0;
@@ -279,7 +349,7 @@
 			}
 
 			.nol-example-card-content {
-				padding: 22px;
+				padding: 20px;
 				display: flex;
 				flex-direction: column;
 				flex-grow: 1;
@@ -289,13 +359,13 @@
 			.nol-example-card h3 {
 				font-size: 1.12rem;
 				line-height: 1.4;
-				color: var(--nol-text);
+				color: #ffffff;
 			}
 
 			/* VIDEO SECTION */
 
 			.nol-video {
-				margin-top: 40px;
+				margin-top: 36px;
 			}
 
 			.nol-video video {
@@ -303,31 +373,32 @@
 				width: 100%;
 				max-height: 660px;
 				background: #0b0f0e;
-				border-radius: 10px;
-				border: 1px solid var(--nol-border);
+				border-radius: 8px;
+				border: 1px solid var(--nol-card-border);
 			}
 
 			.nol-caption {
 				font-size: 0.95rem;
-				margin-top: 12px !important;
+				margin-top: 10px !important;
+				color: var(--nol-muted);
 			}
 
 			/* TAKEAWAYS / FINAL THOUGHTS */
 
 			.nol-takeaway {
-				margin-top: 36px;
-				padding: 28px;
-				background: rgba(23, 29, 27, 0.85);
-				border: 1px solid var(--nol-border);
-				border-left: 4px solid var(--nol-accent);
+				margin-top: 24px;
+				padding: 24px;
+				background: var(--nol-card);
+				border: 1px solid var(--nol-card-border);
+				border-left: 5px solid var(--nol-accent);
 				border-radius: 0 8px 8px 0;
 			}
 
 			.nol-takeaway p {
-				margin: 0 0 15px;
-				color: var(--nol-text);
-				font-size: 1.05rem;
-				line-height: 1.75;
+				margin: 0 0 14px;
+				color: var(--nol-muted);
+				font-size: 1.02rem;
+				line-height: 1.7;
 			}
 
 			.nol-takeaway p:last-child {
@@ -336,58 +407,28 @@
 
 			/* NAVIGATION AND FOOTER */
 
-			.navbar .nav-contact-icon {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				min-width: 28px;
-				min-height: 28px;
-				font-size: 1.2rem;
-				line-height: 1;
+			.navbar {
+				background: rgba(23, 29, 27, 0.9);
+				border-color: var(--nol-card-border);
 			}
 
-			.navbar .linkedin-icon {
-				font-family: Arial, sans-serif;
-				font-weight: 700;
+			.navbar a {
+				color: #ffffff;
+			}
+
+			.footer {
+				background: var(--nol-section);
+				color: #ffffff;
+				margin-top: 48px;
+				border-top: 1px solid var(--nol-card-border);
 			}
 
 			.footer h2 {
 				color: var(--nol-accent);
 			}
 
-			.footer .social-icons {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				gap: 1.25rem;
-				padding: 0.5rem 1rem 0.25rem;
-			}
-
-			.footer .social-icons a {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				line-height: 0;
-			}
-
-			.footer .social-icons img {
-				width: 32px;
-				height: 32px;
-				margin: 0;
-			}
-
-			.footer .contact-details {
-				margin-top: 0.25rem;
-			}
-
-			.footer .contact-details p {
-				margin: 0.35rem 0;
-			}
-
-			.footer .contact-details a {
-				color: var(--text-main);
-				text-decoration: none;
-				transition: color 0.2s ease;
+			.footer p, .footer a {
+				color: var(--nol-muted);
 			}
 
 			.footer .contact-details .contact-email {
@@ -403,7 +444,13 @@
 
 			/* RESPONSIVE */
 
-			@media (max-width: 850px) {
+			@media (max-width: 900px) {
+				.nol-meta-bar {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+				.nol-roles-grid {
+					grid-template-columns: 1fr;
+				}
 				.nol-card-grid {
 					grid-template-columns: 1fr;
 				}
@@ -411,27 +458,23 @@
 
 			@media (max-width: 700px) {
 				.nol-page {
-					width: min(100% - 28px, 1280px);
+					width: min(100% - 24px, 1280px);
 				}
 
 				.nol-hero {
-					min-height: 500px;
+					min-height: 440px;
 				}
 
 				.nol-hero-content {
-					padding: 44px 22px 38px;
+					padding: 36px 18px 30px;
 				}
 
 				.nol-section {
-					padding: 38px 0;
+					padding: 32px 20px;
 				}
 
-				.navbar ul {
-					gap: 0.6rem 1rem;
-				}
-
-				.navbar a {
-					font-size: 0.9rem;
+				.nol-meta-bar {
+					grid-template-columns: 1fr;
 				}
 			}
 		</style>
@@ -479,7 +522,7 @@
 					<h1>Investigating UFOs in Communist-Era Poland</h1>
 
 					<p class="nol-hero-subtitle">
-						Developed during a 1-week game jam as Narrative Designer and Writer, turning environmental cues and cryptic clues into an immersive investigative puzzle with 5 distinct endings.
+						Turning environmental cues and cryptic clues into an immersive investigative puzzle with 5 distinct endings.
 					</p>
 
 					<div class="nol-hero-links">
@@ -494,9 +537,72 @@
 			</section>
 
 
-			<!-- 01: THE BASE & LEVEL DESIGN -->
+			<!-- METADATA QUICK STATS BAR (POD BANEREM) -->
+			<div class="nol-meta-bar">
+				<div class="nol-meta-item">
+					<span class="nol-meta-label">Genre</span>
+					<span class="nol-meta-value">Investigative Thriller / Puzzle</span>
+				</div>
+				<div class="nol-meta-item">
+					<span class="nol-meta-label">Engine</span>
+					<span class="nol-meta-value">Unity (C#)</span>
+				</div>
+				<div class="nol-meta-item">
+					<span class="nol-meta-label">Development Time</span>
+					<span class="nol-meta-value">1-Week Game Jam</span>
+				</div>
+				<div class="nol-meta-item">
+					<span class="nol-meta-label">Team Size</span>
+					<span class="nol-meta-value">Solo / Game Jam Entry</span>
+				</div>
+			</div>
+
+
+			<!-- 01: SCOPE & RESPONSIBILITIES -->
 			<section class="nol-section">
-				<div class="nol-eyebrow">01 · Worldbuilding & Environmental Storytelling</div>
+				<div class="nol-eyebrow">01 · Role & Scope</div>
+
+				<h2>My Responsibilities & Contribution</h2>
+
+				<p class="nol-lead">
+					Working as Narrative Designer and Writer during a 1-week game jam, my focus centered on crafting environmental storytelling, investigative puzzles, and historical worldbuilding.
+				</p>
+
+				<!-- KAFELKI ODPOWIEDZIALNOŚCI -->
+				<div class="nol-roles-grid">
+					<div class="nol-role-card">
+						<h3>🕵️ Narrative Design & Writing</h3>
+						<ul>
+							<li>Structuring 5 distinct narrative endings based on player clues.</li>
+							<li>Writing in-game text documents, newspaper clippings, and clues.</li>
+							<li>Maintaining thematic consistency with communist-era Poland.</li>
+						</ul>
+					</div>
+
+					<div class="nol-role-card">
+						<h3>🏚️ Environmental Storytelling</h3>
+						<ul>
+							<li>Designing the blockout and layout of the conspiracy uncle's basement.</li>
+							<li>Placing environmental props to convey character psychology.</li>
+							<li>Integrating authentic Polish cultural references and pop-culture items.</li>
+						</ul>
+					</div>
+
+					<div class="nol-role-card">
+						<h3>🧩 Puzzle & Systems Integration</h3>
+						<ul>
+							<li>Connecting environmental clues with operational hardware (radio, microwave).</li>
+							<li>Balancing puzzle difficulty and cryptographic hints.</li>
+							<li>Implementing animations and ending logic inside Unity.</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- 02: THE BASE & LEVEL DESIGN -->
+			<section class="nol-section">
+				<div class="nol-eyebrow">02 · Worldbuilding & Environmental Storytelling</div>
 
 				<h2>The Conspiracy Theorist's Basement (Blockout & Layout)</h2>
 
@@ -549,9 +655,9 @@
 			</section>
 
 
-			<!-- 02: NARRATIVE FLOW & PUZZLES -->
+			<!-- 03: NARRATIVE FLOW & PUZZLES -->
 			<section class="nol-section">
-				<div class="nol-eyebrow">02 · Narrative Flow & Puzzles</div>
+				<div class="nol-eyebrow">03 · Narrative Flow & Puzzles</div>
 
 				<h2>Weaving Clues Into Text Across 5 Endings</h2>
 
@@ -578,9 +684,9 @@
 			</section>
 
 
-			<!-- 03: THE EQUIPMENT & GAMEPLAY -->
+			<!-- 04: THE EQUIPMENT & GAMEPLAY -->
 			<section class="nol-section">
-				<div class="nol-eyebrow">03 · Mechanics & Interaction</div>
+				<div class="nol-eyebrow">04 · Mechanics & Interaction</div>
 
 				<h2>The Operational Base: Microwave, Bulbulator, and Radio</h2>
 
@@ -604,9 +710,9 @@
 			</section>
 
 
-			<!-- 04: FINAL THOUGHTS -->
+			<!-- 05: FINAL THOUGHTS -->
 			<section class="nol-section">
-				<div class="nol-eyebrow">04 · Design Takeaways</div>
+				<div class="nol-eyebrow">05 · Design Takeaways</div>
 
 				<h2>What I Learned from Project N-O-L</h2>
 

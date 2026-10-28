@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Narrative and Game Design breakdown for FunGone - a cosy mushroom-gardening strategy game created during a 7-day game jam.">
+		<meta name="theme-color" content="#52796f">
+
+		<title>FunGone — Narrative & Game Design Breakdown | Antoni Janiak</title>
+
+		<link rel="stylesheet" href="../../styles.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+		<style>
+			:root {
+				--fg-bg: #52796f;
+				--fg-section: #354f52;
+				--fg-card: #f4f7f4;
+				--fg-card-border: #a3c1ad;
+				--fg-text: #1b2623;
+				--fg-text-muted: #3a4f47;
+				--fg-accent: #2f5d50;
+				--fg-accent-hover: #1e3b33;
+				--fg-highlight: #84a98c;
+			}
+
+			body {
+				background: var(--fg-bg);
+				color: var(--fg-text);
+				font-family: "Roboto", sans-serif;
+				line-height: 1.8;
+				margin: 0;
+				font-size: 1.05rem;
+			}
+
+			/* HERO / COVER */
+
+			.fg-page {
+				width: min(100% - 48px, 1280px);
+				margin: 0 auto;
+			}
+
+			.fg-hero {
+				position: relative;
+				min-height: 520px;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				overflow: hidden;
+				background: #354f52;
+				border-radius: 0 0 14px 14px;
+				border: 2px solid var(--fg-card-border);
+				border-top: none;
+			}
+
+			.fg-hero-image {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+
+			.fg-hero::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					to top,
+					rgba(47, 79, 71, 0.95) 0%,
+					rgba(53, 79, 82, 0.70) 50%,
+					rgba(53, 79, 82, 0.25) 100%
+				);
+			}
+
+			.fg-hero-content {
+				position: relative;
+				z-index: 1;
+				width: 100%;
+				max-width: 1100px;
+				box-sizing: border-box;
+				margin: 0 auto;
+				padding: 50px 48px 40px;
+				text-align: center;
+			}
+
+			.fg-eyebrow {
+				color: #ffffff;
+				font-size: 0.9rem;
+				font-weight: 700;
+				letter-spacing: 2.2px;
+				text-transform: uppercase;
+				margin-bottom: 14px;
+			}
+
+			.fg-section .fg-eyebrow {
+				color: var(--fg-accent);
+			}
+
+			.fg-hero h1 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+				line-height: 1.2;
+				max-width: 980px;
+				margin: 0 auto 20px;
+				color: #ffffff;
+			}
+
+			.fg-hero-subtitle {
+				color: #e8f1ed;
+				font-size: 1.22rem;
+				max-width: 780px;
+				margin: 0 auto;
+			}
+
+			.fg-hero-links {
+				display: flex;
+				justify-content: center;
+				gap: 16px;
+				flex-wrap: wrap;
+				margin-top: 28px;
+			}
+
+			.fg-button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 12px 22px;
+				border: 2px solid #ffffff;
+				border-radius: 6px;
+				color: #ffffff;
+				text-decoration: none;
+				font-size: 1rem;
+				font-weight: 700;
+				background: rgba(47, 79, 71, 0.6);
+				transition: all 0.2s ease;
+			}
+
+			.fg-button:hover {
+				background: #ffffff;
+				color: var(--fg-accent);
+			}
+
+			.fg-button-primary {
+				background: var(--fg-highlight);
+				border-color: var(--fg-highlight);
+				color: #1b2623;
+			}
+
+			.fg-button-primary:hover {
+				background: #ffffff;
+				border-color: #ffffff;
+				color: var(--fg-accent);
+			}
+
+			/* METADATA QUICK STATS BAR (POD BANEREM) */
+
+			.fg-meta-bar {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				gap: 16px;
+				margin-top: 32px;
+			}
+
+			.fg-meta-item {
+				background: rgba(244, 247, 244, 0.95);
+				border: 1px solid var(--fg-card-border);
+				border-radius: 8px;
+				padding: 18px;
+				text-align: center;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+			}
+
+			.fg-meta-label {
+				display: block;
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+				color: var(--fg-accent);
+				font-weight: 700;
+				margin-bottom: 6px;
+			}
+
+			.fg-meta-value {
+				font-size: 1.05rem;
+				color: var(--fg-text);
+				font-weight: 500;
+			}
+
+			/* CONTENT SECTIONS */
+
+			.fg-section {
+				padding: 54px 36px;
+				margin-top: 32px;
+				background: rgba(244, 247, 244, 0.95);
+				border-radius: 12px;
+				border: 1px solid var(--fg-card-border);
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+			}
+
+			.fg-section h2 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+				line-height: 1.35;
+				margin: 0 0 20px;
+				color: var(--fg-accent);
+			}
+
+			.fg-section h3 {
+				font-size: 1.25rem;
+				margin: 0 0 12px;
+				color: var(--fg-text);
+			}
+
+			.fg-section p {
+				color: var(--fg-text-muted);
+				margin: 0 0 18px;
+			}
+
+			.fg-lead {
+				font-size: 1.15rem;
+				line-height: 1.8;
+				color: var(--fg-text) !important;
+				font-weight: 500;
+			}
+
+			.fg-label {
+				display: inline-block;
+				color: var(--fg-accent);
+				font-size: 0.84rem;
+				text-transform: uppercase;
+				letter-spacing: 1.4px;
+				font-weight: 700;
+				margin-bottom: 8px;
+			}
+
+			/* ROLE BREAKDOWN CARDS */
+
+			.fg-roles-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 20px;
+				margin-top: 28px;
+			}
+
+			.fg-role-card {
+				background: #ffffff;
+				border: 1px solid var(--fg-card-border);
+				border-top: 4px solid var(--fg-accent);
+				border-radius: 8px;
+				padding: 22px;
+				box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+			}
+
+			.fg-role-card h3 {
+				font-size: 1.1rem;
+				margin-bottom: 10px;
+				color: var(--fg-accent);
+			}
+
+			.fg-role-card ul {
+				margin: 0;
+				padding-left: 18px;
+				color: var(--fg-text-muted);
+			}
+
+			.fg-role-card li {
+				margin-bottom: 8px;
+				font-size: 0.96rem;
+			}
+
+			/* 3 CHARACTER & DIALOGUE CARDS GRID */
+
+			.fg-character-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 24px;
+				margin-top: 28px;
+			}
+
+			.fg-char-card {
+				background: #ffffff;
+				border: 2px solid var(--fg-card-border);
+				border-radius: 10px;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+			}
+
+			.fg-char-card img {
+				display: block;
+				width: 100%;
+				aspect-ratio: 1 / 1;
+				object-fit: contain;
+				background: #eaf2ed;
+				padding: 12px;
+				box-sizing: border-box;
+			}
+
+			.fg-char-card-content {
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+			}
+
+			.fg-char-card h3 {
+				font-size: 1.2rem;
+				margin-bottom: 6px;
+				color: var(--fg-accent);
+			}
+
+			.fg-dialogue-quote {
+				margin-top: 14px;
+				padding: 14px;
+				background: #eaf2ed;
+				border-left: 4px solid var(--fg-accent);
+				border-radius: 4px;
+				font-style: italic;
+				color: var(--fg-text);
+				font-size: 0.98rem;
+				line-height: 1.6;
+			}
+
+			.fg-dialogue-quote p {
+				margin: 0;
+				color: var(--fg-text);
+			}
+
+			/* RETROSPECTIVE / TAKEAWAYS */
+
+			.fg-takeaway {
+				margin-top: 24px;
+				padding: 24px;
+				background: #ffffff;
+				border: 1px solid var(--fg-card-border);
+				border-left: 5px solid var(--fg-accent);
+				border-radius: 0 8px 8px 0;
+			}
+
+			.fg-takeaway p {
+				margin: 0 0 14px;
+				color: var(--fg-text-muted);
+				font-size: 1.02rem;
+				line-height: 1.7;
+			}
+
+			.fg-takeaway p:last-child {
+				margin-bottom: 0;
+			}
+
+			/* NAVIGATION AND FOOTER OVERRIDES */
+
+			.navbar {
+				background: rgba(53, 79, 82, 0.9);
+				border-color: var(--fg-card-border);
+			}
+
+			.navbar a {
+				color: #ffffff;
+			}
+
+			.footer {
+				background: #354f52;
+				color: #ffffff;
+				margin-top: 48px;
+			}
+
+			.footer h2 {
+				color: #ffffff;
+			}
+
+			.footer p, .footer a {
+				color: #e8f1ed;
+			}
+
+			.footer .contact-details .contact-email {
+				color: #ffffff;
+			}
+
+			/* RESPONSIVE */
+
+			@media (max-width: 900px) {
+				.fg-meta-bar {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+				.fg-roles-grid {
+					grid-template-columns: 1fr;
+				}
+				.fg-character-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 700px) {
+				.fg-page {
+					width: min(100% - 24px, 1280px);
+				}
+				.fg-hero {
+					min-height: 440px;
+				}
+				.fg-hero-content {
+					padding: 36px 18px 30px;
+				}
+				.fg-section {
+					padding: 32px 20px;
+				}
+				.fg-meta-bar {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- MAIN PORTFOLIO NAVIGATION -->
+		<nav class="navbar floating" aria-label="Main navigation">
+			<ul>
+				<li><a href="../../index.html">Portfolio</a></li>
+				<li><a href="../../index.html#about">About</a></li>
+				<li><a href="../../index.html#projects">Projects</a></li>
+				<li>
+					<a class="nav-contact-icon" href="mailto:antoni.janiak.dev@gmail.com" aria-label="Email Antoni" title="Email">
+						<span aria-hidden="true">✉</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon" href="tel:+48662786947" aria-label="Call Antoni" title="Phone">
+						<span aria-hidden="true">☎</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon linkedin-icon" href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
+						<span aria-hidden="true">in</span>
+					</a>
+				</li>
+				<li><a href="../../files/CV_en.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+			</ul>
+		</nav>
+
+
+		<main class="fg-page">
+
+			<!-- TITLE / COVER (HERO BANNER) -->
+			<section class="fg-hero">
+				<img class="fg-hero-image" src="images/fungone-banner.png" alt="FunGone game artwork" loading="lazy">
+
+				<div class="fg-hero-content">
+					<div class="fg-eyebrow">
+						Narrative Design & Game Design · FunGone
+					</div>
+
+					<h1>A Cosy Mushroom-Gardening Strategy Game</h1>
+
+					<p class="fg-hero-subtitle">
+						Protecting the magical forest from ruthless Foragers by expanding mycelium networks and managing garden resources.
+					</p>
+
+					<div class="fg-hero-links">
+						<a class="fg-button fg-button-primary" href="https://antonver.itch.io/fungone" target="_blank" rel="noopener noreferrer">
+							🎮 Play on Itch.io
+						</a>
+						<a class="fg-button" href="../../index.html">
+							Back to Portfolio
+						</a>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- METADATA QUICK STATS BAR (POD BANEREM) -->
+			<div class="fg-meta-bar">
+				<div class="fg-meta-item">
+					<span class="fg-meta-label">Genre</span>
+					<span class="fg-meta-value">Cosy Gardening Strategy</span>
+				</div>
+				<div class="fg-meta-item">
+					<span class="fg-meta-label">Engine</span>
+					<span class="fg-meta-value">Unity (C#)</span>
+				</div>
+				<div class="fg-meta-item">
+					<span class="fg-meta-label">Development Time</span>
+					<span class="fg-meta-value">7-Day Game Jam</span>
+				</div>
+				<div class="fg-meta-item">
+					<span class="fg-meta-label">Team Size</span>
+					<span class="fg-meta-value">Solo / Game Jam Entry</span>
+				</div>
+			</div>
+
+
+			<!-- 01: CONCEPT & RESPONSIBILITIES -->
+			<section class="fg-section">
+				<div class="fg-eyebrow">01 · Concept & Responsibilities</div>
+
+				<h2>My Role & Scope of Work</h2>
+
+				<p class="fg-lead">
+					Developed during a 7-day game jam, *FunGone* required fast scoping, creative worldbuilding, and precise mechanical balance.
+				</p>
+
+				<!-- KAFELKI ODPOWIEDZIALNOŚCI -->
+				<div class="fg-roles-grid">
+					<div class="fg-role-card">
+						<h3>📖 Narrative Design & Writing</h3>
+						<ul>
+							<li>Created foundational world lore and forest symbiosis background.</li>
+							<li>Wrote short-form, humorous dialogue and character banters.</li>
+							<li>Framed the narrative around the existential threat of foragers.</li>
+						</ul>
+					</div>
+
+					<div class="fg-role-card">
+						<h3>🌿 Game Design & Systems</h3>
+						<ul>
+							<li>Designed grid-based roguelite gardening mechanics.</li>
+							<li>Structured resource management (Resin and Rerolls).</li>
+							<li>Balanced item pools and mycelium expansion loops.</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- 02: 3 CHARACTERS & DIALOGUES -->
+			<section class="fg-section">
+				<div class="fg-eyebrow">02 · Character Writing & Dialogue Highlights</div>
+
+				<h2>Characters & Written Lines</h2>
+
+				<p class="fg-lead">
+					Writing for *FunGone* focused on snappy, lighthearted banter between woodland fungi facing foragers. Here are 3 key characters alongside lines written for them:
+				</p>
+
+				<div class="fg-character-grid">
+
+					<!-- CHARACTER 1 -->
+					<article class="fg-char-card">
+						<img src="images/fungone-char1.png" alt="Funia - Protagonist" loading="lazy">
+						<div class="fg-char-card-content">
+							<span class="fg-label">Character 01</span>
+							<h3>Funia — The Undershroom</h3>
+							<p>The determined protagonist trying to keep the mycelium network alive against incoming foragers.</p>
+							
+							<div class="fg-dialogue-quote">
+								<p>"You step into the shroomy boots of a certain undershroom known by the name Funia, attempting to save the forest from the dreadful Foragers!"</p>
+							</div>
+						</div>
+					</article>
+
+					<!-- CHARACTER 2 -->
+					<article class="fg-char-card">
+						<img src="images/fungone-char2.png" alt="Woodland Fungi NPC" loading="lazy">
+						<div class="fg-char-card-content">
+							<span class="fg-label">Character 02</span>
+							<h3>Sporesby — Woodland Neighbor</h3>
+							<p>A nervous fungal resident anxious about space management and soil plot expansions.</p>
+							
+							<div class="fg-dialogue-quote">
+								<p>"Careful where you drop your spores, stranger! Some of us are trying to establish a quiet symbiotic network before the basket comes down."</p>
+							</div>
+						</div>
+					</article>
+
+					<!-- CHARACTER 3 -->
+					<article class="fg-char-card">
+						<img src="images/fungone-char3.png" alt="Elder Mushroom NPC" loading="lazy">
+						<div class="fg-char-card-content">
+							<span class="fg-label">Character 03</span>
+							<h3>Elder Mycelia</h3>
+							<p>The wise old cap offering cryptic advice and tactical gardening tips to Funia.</p>
+							
+							<div class="fg-dialogue-quote">
+								<p>"Symbiosis isn't just about sharing soil; it's about making sure the foragers pick moss instead of our prized mycelium caps!"</p>
+							</div>
+						</div>
+					</article>
+
+				</div>
+			</section>
+
+
+			<!-- 03: WHAT I HAVE LEARNED -->
+			<section class="fg-section">
+				<div class="fg-eyebrow">03 · Retrospective</div>
+
+				<h2>What I Have Learned</h2>
+
+				<div class="fg-takeaway">
+					<span class="fg-label">01 · Concise & Punchy Writing in Jams</span>
+					<p>
+						Working on a 7-day jam taught me how to deliver character personality through snappy, short-form dialogue lines without bogging down the player with excessive text boxes.
+					</p>
+
+					<span class="fg-label" style="display:inline-block; margin-top: 10px;">02 · Balancing Cosy Themes with Strategic Depth</span>
+					<p>
+						Designing a lighthearted aesthetic alongside grid-based roguelite mechanics required careful balance to ensure the gameplay remained engaging and tactical without losing its charming vibe.
+					</p>
+
+					<span class="fg-label" style="display:inline-block; margin-top: 10px;">03 · Rapid Scoping Under Tight Deadlines</span>
+					<p>
+						Narrowing down core mechanics early in the week allowed me to integrate narrative elements and resource systems smoothly before the jam deadline hit.
+					</p>
+				</div>
+			</section>
+
+		</main>
+
+
+		<!-- CONTACT FOOTER -->
+		<footer class="footer">
+			<section id="contact">
+				<p class="section-kicker">GET IN TOUCH</p>
+				<h2>Let's Connect</h2>
+
+				<p>
+					Interested in game design, narrative or collaborating on a project?
+				</p>
+
+				<div class="container social-icons">
+					<a href="https://github.com/antonver12/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+						<img src="../../icons/github.svg" alt="GitHub">
+					</a>
+
+					<a href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+						<img src="../../icons/linkedin.svg" alt="LinkedIn">
+					</a>
+
+					<a href="https://antonver.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+						<img src="../../icons/itchio.svg" alt="itch.io">
+					</a>
+				</div>
+
+				<div class="contact-details">
+					<p>
+						<strong>
+							<a class="contact-email" href="mailto:antoni.janiak.dev@gmail.com">
+								antoni.janiak.dev@gmail.com
+							</a>
+						</strong>
+					</p>
+
+					<p>
+						<a class="contact-phone" href="tel:+48662786947">
+							+48 662 786 947
+						</a>
+					</p>
+				</div>
+
+				<p class="copyright">&copy; 2026 Antoni Janiak</p>
+			</section>
+		</footer>
+
+	</body>
+</html>

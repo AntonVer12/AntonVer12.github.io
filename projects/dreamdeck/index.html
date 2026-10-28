@@ -17,12 +17,11 @@
 										--dd-bg: #131118;
 										--dd-section: #191522;
 										--dd-card: #201b2c;
+										--dd-card-border: #3b324d;
 										--dd-text: #e4e4e4;
 										--dd-muted: #b4b4b4;
-										/* Spójny fioletowy akcent dla całego projektu */
 										--dd-accent: #a370df;
 										--dd-accent-hover: #bc92ef;
-										--dd-border: #3b324d;
 										}
 
 										body {
@@ -43,13 +42,15 @@
 
 										.dd-hero {
 										position: relative;
-										min-height: 620px;
+										min-height: 520px;
 										display: flex;
 										align-items: flex-end;
 										justify-content: center;
 										overflow: hidden;
-										background: #1b1626;
+										background: var(--dd-section);
 										border-radius: 0 0 14px 14px;
+										border: 2px solid var(--dd-card-border);
+										border-top: none;
 										}
 
 										.dd-hero-image {
@@ -67,9 +68,9 @@
 										inset: 0;
 										background: linear-gradient(
 										to top,
-										rgba(13, 11, 18, 0.97) 0%,
-										rgba(13, 11, 18, 0.70) 45%,
-										rgba(13, 11, 18, 0.10) 100%
+										rgba(13, 11, 18, 0.95) 0%,
+										rgba(25, 21, 34, 0.70) 50%,
+										rgba(25, 21, 34, 0.25) 100%
 										);
 										}
 
@@ -80,9 +81,8 @@
 										max-width: 1100px;
 										box-sizing: border-box;
 										margin: 0 auto;
-										padding: 60px 48px 52px;
+										padding: 50px 48px 40px;
 										text-align: center;
-										transform: translateY(8px);
 										}
 
 										.dd-eyebrow {
@@ -100,7 +100,7 @@
 										line-height: 1.2;
 										max-width: 980px;
 										margin: 0 auto 20px;
-										color: var(--dd-text); /* Zmienione z pomarańczowego/złotego na neutralny tekst */
+										color: var(--dd-text);
 										}
 
 										.dd-hero-subtitle {
@@ -115,8 +115,7 @@
 										justify-content: center;
 										gap: 16px;
 										flex-wrap: wrap;
-										margin-top: 34px;
-										margin-bottom: 10px;
+										margin-top: 28px;
 										}
 
 										.dd-button {
@@ -124,79 +123,158 @@
 										align-items: center;
 										justify-content: center;
 										padding: 12px 22px;
-										border: 1px solid var(--dd-accent);
+										border: 2px solid var(--dd-card-border);
 										border-radius: 6px;
 										color: var(--dd-accent);
 										text-decoration: none;
 										font-size: 1rem;
 										font-weight: 700;
-										transition: background 0.2s ease, color 0.2s ease;
+										background: rgba(32, 27, 44, 0.8);
+										transition: all 0.2s ease;
 										}
 
 										.dd-button:hover {
 										background: var(--dd-accent);
+										border-color: var(--dd-accent);
 										color: #131118;
 										}
 
 										.dd-button-primary {
 										background: var(--dd-accent);
+										border-color: var(--dd-accent);
 										color: #131118;
 										}
 
 										.dd-button-primary:hover {
 										background: var(--dd-accent-hover);
+										border-color: var(--dd-accent-hover);
+										color: #131118;
+										}
+
+										/* METADATA QUICK STATS BAR (POD BANEREM) */
+
+										.dd-meta-bar {
+										display: grid;
+										grid-template-columns: repeat(4, minmax(0, 1fr));
+										gap: 16px;
+										margin-top: 32px;
+										}
+
+										.dd-meta-item {
+										background: var(--dd-card);
+										border: 1px solid var(--dd-card-border);
+										border-radius: 8px;
+										padding: 18px;
+										text-align: center;
+										box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+										}
+
+										.dd-meta-label {
+										display: block;
+										font-size: 0.78rem;
+										text-transform: uppercase;
+										letter-spacing: 1.5px;
+										color: var(--dd-accent);
+										font-weight: 700;
+										margin-bottom: 6px;
+										}
+
+										.dd-meta-value {
+										font-size: 1.05rem;
+										color: #ffffff;
+										font-weight: 500;
 										}
 
 										/* CONTENT SECTIONS */
 
 										.dd-section {
-										padding: 64px 0;
-										border-bottom: 1px solid var(--dd-border);
+										padding: 54px 36px;
+										margin-top: 32px;
+										background: var(--dd-section);
+										border-radius: 12px;
+										border: 1px solid var(--dd-card-border);
+										box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 										scroll-margin-top: 85px;
 										}
 
 										.dd-section h2 {
 										font-family: "Orbitron", sans-serif;
-										font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+										font-size: clamp(1.6rem, 3.2vw, 2.2rem);
 										line-height: 1.35;
-										margin: 0 0 24px;
+										margin: 0 0 20px;
 										color: var(--dd-accent);
 										}
 
 										.dd-section h3 {
 										font-size: 1.25rem;
-										margin: 0 0 14px;
+										margin: 0 0 12px;
+										color: #ffffff;
 										}
 
 										.dd-section p {
 										color: var(--dd-muted);
-										margin: 0 0 20px;
+										margin: 0 0 18px;
 										}
 
 										.dd-lead {
-										font-size: 1.18rem;
-										line-height: 1.85;
+										font-size: 1.15rem;
+										line-height: 1.8;
+										color: #ffffff !important;
+										font-weight: 500;
 										}
 
-										.dd-project-credits {
-										font-size: 1rem;
-										border-left: 3px solid var(--dd-accent);
-										padding-left: 18px;
+										.dd-label {
+										display: inline-block;
+										color: var(--dd-accent);
+										font-size: 0.84rem;
+										text-transform: uppercase;
+										letter-spacing: 1.4px;
+										font-weight: 700;
+										margin-bottom: 8px;
+										}
+
+										/* ROLE BREAKDOWN CARDS */
+
+										.dd-roles-grid {
+										display: grid;
+										grid-template-columns: repeat(3, minmax(0, 1fr));
+										gap: 20px;
 										margin-top: 28px;
 										}
 
-										.dd-project-credits strong {
-										color: var(--dd-text);
+										.dd-role-card {
+										background: var(--dd-card);
+										border: 1px solid var(--dd-card-border);
+										border-top: 4px solid var(--dd-accent);
+										border-radius: 8px;
+										padding: 22px;
+										}
+
+										.dd-role-card h3 {
+										font-size: 1.1rem;
+										margin-bottom: 10px;
+										color: #ffffff;
+										}
+
+										.dd-role-card ul {
+										margin: 0;
+										padding-left: 18px;
+										color: var(--dd-muted);
+										}
+
+										.dd-role-card li {
+										margin-bottom: 8px;
+										font-size: 0.96rem;
 										}
 
 										/* SCREENSHOTS AND TRANSLATIONS */
 
 										.dd-media-card {
 										background: var(--dd-card);
-										border: 1px solid var(--dd-border);
+										border: 1px solid var(--dd-card-border);
 										border-radius: 10px;
 										overflow: hidden;
-										margin-top: 32px;
+										margin-top: 28px;
 										}
 
 										.dd-media-card img {
@@ -213,19 +291,9 @@
 										margin-bottom: 0;
 										}
 
-										.dd-label {
-										display: inline-block;
-										color: var(--dd-accent);
-										font-size: 0.84rem;
-										text-transform: uppercase;
-										letter-spacing: 1.4px;
-										font-weight: 700;
-										margin-bottom: 10px;
-										}
-
 										.dd-translation {
 										background: rgba(26, 21, 36, 0.85);
-										border: 1px solid var(--dd-border);
+										border: 1px solid var(--dd-card-border);
 										border-left: 4px solid var(--dd-accent);
 										padding: 20px 22px;
 										margin-top: 16px;
@@ -240,14 +308,14 @@
 										.dd-translation .dd-placeholder {
 										color: var(--dd-text);
 										font-style: normal;
-										font-size: 1.1rem;
-										line-height: 1.8;
+										font-size: 1.05rem;
+										line-height: 1.75;
 										}
 
 										/* GAMEPLAY VIDEO */
 
 										.dd-video {
-										margin-top: 40px;
+										margin-top: 36px;
 										}
 
 										.dd-video video {
@@ -255,13 +323,14 @@
 										width: 100%;
 										max-height: 660px;
 										background: #0d0b12;
-										border-radius: 10px;
-										border: 1px solid var(--dd-border);
+										border-radius: 8px;
+										border: 1px solid var(--dd-card-border);
 										}
 
 										.dd-caption {
 										font-size: 0.95rem;
-										margin-top: 12px !important;
+										margin-top: 10px !important;
+										color: var(--dd-muted);
 										}
 
 										/* CARD COMBINATION EXAMPLE */
@@ -270,12 +339,12 @@
 										display: grid;
 										grid-template-columns: repeat(3, minmax(0, 1fr));
 										gap: 24px;
-										margin-top: 32px;
+										margin-top: 28px;
 										}
 
 										.dd-example-card {
 										background: var(--dd-card);
-										border: 1px solid var(--dd-border);
+										border: 1px solid var(--dd-card-border);
 										border-radius: 10px;
 										overflow: hidden;
 										min-width: 0;
@@ -296,7 +365,7 @@
 										.dd-example-card h3 {
 										font-size: 1.12rem;
 										line-height: 1.4;
-										color: var(--dd-text);
+										color: #ffffff;
 										}
 
 										.dd-example-card p {
@@ -312,11 +381,11 @@
 										}
 
 										.dd-takeaway {
-										margin-top: 36px;
-										padding: 28px;
-										background: rgba(26, 21, 36, 0.85);
-										border: 1px solid var(--dd-border);
-										border-left: 4px solid var(--dd-accent);
+										margin-top: 32px;
+										padding: 24px;
+										background: var(--dd-card);
+										border: 1px solid var(--dd-card-border);
+										border-left: 5px solid var(--dd-accent);
 										border-radius: 0 8px 8px 0;
 										}
 
@@ -329,59 +398,28 @@
 
 										/* NAVIGATION AND FOOTER */
 
-										.navbar .nav-contact-icon {
-										display: inline-flex;
-										align-items: center;
-										justify-content: center;
-										min-width: 28px;
-										min-height: 28px;
-										font-size: 1.2rem;
-										line-height: 1;
+										.navbar {
+										background: rgba(25, 21, 34, 0.9);
+										border-color: var(--dd-card-border);
 										}
 
-										.navbar .linkedin-icon {
-										font-family: Arial, sans-serif;
-										font-weight: 700;
+										.navbar a {
+										color: #ffffff;
 										}
 
-										/* Nadanie fioletowego koloru dla nagłówka Let's Connect w stopce */
+										.footer {
+										background: var(--dd-section);
+										color: #ffffff;
+										margin-top: 48px;
+										border-top: 1px solid var(--dd-card-border);
+										}
+
 										.footer h2 {
 										color: var(--dd-accent);
 										}
 
-										.footer .social-icons {
-										display: flex;
-										justify-content: center;
-										align-items: center;
-										gap: 1.25rem;
-										padding: 0.5rem 1rem 0.25rem;
-										}
-
-										.footer .social-icons a {
-										display: inline-flex;
-										align-items: center;
-										justify-content: center;
-										line-height: 0;
-										}
-
-										.footer .social-icons img {
-										width: 32px;
-										height: 32px;
-										margin: 0;
-										}
-
-										.footer .contact-details {
-										margin-top: 0.25rem;
-										}
-
-										.footer .contact-details p {
-										margin: 0.35rem 0;
-										}
-
-										.footer .contact-details a {
-										color: var(--text-main);
-										text-decoration: none;
-										transition: color 0.2s ease;
+										.footer p, .footer a {
+										color: var(--dd-muted);
 										}
 
 										.footer .contact-details .contact-email {
@@ -397,7 +435,13 @@
 
 										/* RESPONSIVE */
 
-										@media (max-width: 850px) {
+										@media (max-width: 900px) {
+										.dd-meta-bar {
+										grid-template-columns: repeat(2, minmax(0, 1fr));
+										}
+										.dd-roles-grid {
+										grid-template-columns: 1fr;
+										}
 										.dd-card-grid {
 										grid-template-columns: 1fr;
 										}
@@ -420,20 +464,23 @@
 
 										@media (max-width: 700px) {
 										.dd-page {
-										width: min(100% - 28px, 1280px);
+										width: min(100% - 24px, 1280px);
 										}
 
 										.dd-hero {
-										min-height: 500px;
+										min-height: 440px;
 										}
 
 										.dd-hero-content {
-										padding: 44px 22px 38px;
-										transform: translateY(6px);
+										padding: 36px 18px 30px;
 										}
 
 										.dd-section {
-										padding: 38px 0;
+										padding: 32px 20px;
+										}
+
+										.dd-meta-bar {
+										grid-template-columns: 1fr;
 										}
 
 										.dd-example-card {
@@ -443,29 +490,6 @@
 										.dd-example-card img {
 										height: auto;
 										aspect-ratio: 4 / 3;
-										}
-
-										.navbar ul {
-										gap: 0.6rem 1rem;
-										}
-
-										.navbar a {
-										font-size: 0.9rem;
-										}
-										}
-
-										@media (max-width: 430px) {
-										.dd-page {
-										width: calc(100% - 28px);
-										}
-
-										.dd-hero {
-										min-height: 470px;
-										}
-
-										.dd-hero-content {
-										padding: 38px 18px 34px;
-										transform: translateY(4px);
 										}
 										}
 									</style>
@@ -540,9 +564,72 @@
 				</section>
 
 
-			<!-- PROJECT INTRODUCTION -->
+			<!-- METADATA QUICK STATS BAR (POD BANEREM) -->
+			<div class="dd-meta-bar">
+				<div class="dd-meta-item">
+					<span class="dd-meta-label">Genre</span>
+					<span class="dd-meta-value">Narrative Card Adventure</span>
+				</div>
+				<div class="dd-meta-item">
+					<span class="dd-meta-label">Engine / Tools</span>
+					<span class="dd-meta-value">Unity / Custom Deck System</span>
+				</div>
+				<div class="dd-meta-item">
+					<span class="dd-meta-label">Development Event</span>
+					<span class="dd-meta-value">Cyberiada 2024/2025</span>
+				</div>
+				<div class="dd-meta-item">
+					<span class="dd-meta-label">Team Size</span>
+					<span class="dd-meta-value">Fellow Gamedecs Team</span>
+				</div>
+			</div>
+
+
+			<!-- 01: SCOPE & RESPONSIBILITIES -->
 			<section class="dd-section">
-				<div class="dd-eyebrow">01 · The Project</div>
+				<div class="dd-eyebrow">01 · Role & Scope</div>
+
+				<h2>My Responsibilities & Contribution</h2>
+
+				<p class="dd-lead">
+					Working within the Fellow Gamedecs team for Cyberiada 2024/2025, my primary focus centered on scriptwriting, psychological narrative frameworks, and structuring the card synergy systems.
+				</p>
+
+				<!-- KAFELKI ODPOWIEDZIALNOŚCI -->
+				<div class="dd-roles-grid">
+					<div class="dd-role-card">
+						<h3>📜 Scriptwriting & Lore</h3>
+						<ul>
+							<li>Developing Lucy’s story arc and emotional progression.</li>
+							<li>Writing non-linear dialogues and character interactions.</li>
+							<li>Designing clues embedded within dreamscape encounters.</li>
+						</ul>
+					</div>
+
+					<div class="dd-role-card">
+						<h3>🎴 Narrative Card Mechanics</h3>
+						<ul>
+							<li>Linking card-combination mechanics directly with story beats.</li>
+							<li>Creating symbolic synergies that reveal hidden layers of Lucy's past.</li>
+							<li>Designing gameplay choices tied to internal psychological states.</li>
+						</ul>
+					</div>
+
+					<div class="dd-role-card">
+						<h3>👁️ Unreliable Narration</h3>
+						<ul>
+							<li>Crafting ambiguous story clues that blur dream and reality.</li>
+							<li>Balancing player discovery with mysterious lore reveals.</li>
+							<li>Designing multiple narrative interpretations for key scenes.</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- 02: COMBAT DESIGN AS STORYTELLING -->
+			<section class="dd-section">
+				<div class="dd-eyebrow">02 · Narrative Design Case Study</div>
 
 				<h2>Combat Design as Storytelling</h2>
 
@@ -570,19 +657,8 @@
 					combinations.
 				</p>
 
-				<div class="dd-project-credits">
-					<strong>Project:</strong> DreamDeck<br>
-				</div>
-			</section>
-
-
-			<!-- IN-GAME EXAMPLE -->
-			<section class="dd-section">
-				<div class="dd-eyebrow">02 · In-Game Example</div>
-
-				<h2>Narrative Through Card Descriptions</h2>
-
-				<figure class="dd-media-card">
+				<!-- IN-GAME EXAMPLE FIGURE -->
+				<figure class="dd-media-card" style="margin-top: 32px;">
 					<img src="images/combat-example.png" alt="DreamDeck combat system and card descriptions" loading="lazy">
 
 						<div class="dd-media-caption">
@@ -618,7 +694,7 @@
 			</section>
 
 
-			<!-- CARD COMBINATION EXAMPLE -->
+			<!-- 03: CARD COMBINATION EXAMPLE -->
 			<section class="dd-section">
 				<div class="dd-eyebrow">03 · Reading the Clues</div>
 

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Narrative design and writing breakdown for Operation of What, a 24-hour game jam title exploring Alzheimer's disease through a failing surgeon's perspective.">
+		<meta name="theme-color" content="#101416">
+
+		<title>Operation of What — Narrative Design Breakdown | Antoni Janiak</title>
+
+		<link rel="stylesheet" href="../../styles.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+		<style>
+			:root {
+				--oow-bg: #101416;
+				--oow-section: #171d20;
+				--oow-card: #1f272c;
+				--oow-card-border: #324048;
+				--oow-text: #e0e6ec;
+				--oow-muted: #a4b2be;
+				/* Kliniczny, chirurgiczny błękit/cyan jako akcent */
+				--oow-accent: #4da6ff;
+				--oow-accent-hover: #80bfff;
+			}
+
+			body {
+				background: var(--oow-bg);
+				color: var(--oow-text);
+				font-family: "Roboto", sans-serif;
+				line-height: 1.75;
+				margin: 0;
+				font-size: 1.05rem;
+			}
+
+			/* HERO / COVER */
+
+			.oow-page {
+				width: min(100% - 48px, 1280px);
+				margin: 0 auto;
+			}
+
+			.oow-hero {
+				position: relative;
+				min-height: 520px;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				overflow: hidden;
+				background: var(--oow-section);
+				border-radius: 0 0 14px 14px;
+				border: 2px solid var(--oow-card-border);
+				border-top: none;
+			}
+
+			.oow-hero-image {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+
+			.oow-hero::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					to top,
+					rgba(16, 20, 22, 0.95) 0%,
+					rgba(23, 29, 32, 0.70) 50%,
+					rgba(23, 29, 32, 0.25) 100%
+				);
+			}
+
+			.oow-hero-content {
+				position: relative;
+				z-index: 1;
+				width: 100%;
+				max-width: 1100px;
+				box-sizing: border-box;
+				margin: 0 auto;
+				padding: 50px 48px 40px;
+				text-align: center;
+			}
+
+			.oow-eyebrow {
+				color: #ffffff;
+				font-size: 0.9rem;
+				font-weight: 700;
+				letter-spacing: 2.2px;
+				text-transform: uppercase;
+				margin-bottom: 14px;
+			}
+
+			.oow-hero h1 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+				line-height: 1.2;
+				max-width: 980px;
+				margin: 0 auto 20px;
+				color: #ffffff;
+			}
+
+			.oow-hero-subtitle {
+				color: #d1d9e2;
+				font-size: 1.22rem;
+				max-width: 780px;
+				margin: 0 auto;
+			}
+
+			.oow-hero-links {
+				display: flex;
+				justify-content: center;
+				gap: 16px;
+				flex-wrap: wrap;
+				margin-top: 28px;
+			}
+
+			.oow-button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 12px 22px;
+				border: 2px solid var(--oow-card-border);
+				border-radius: 6px;
+				color: var(--oow-accent);
+				text-decoration: none;
+				font-size: 1rem;
+				font-weight: 700;
+				background: rgba(31, 39, 44, 0.8);
+				transition: all 0.2s ease;
+			}
+
+			.oow-button:hover {
+				background: var(--oow-accent);
+				border-color: var(--oow-accent);
+				color: #101416;
+			}
+
+			.oow-button-primary {
+				background: var(--oow-accent);
+				border-color: var(--oow-accent);
+				color: #101416;
+			}
+
+			.oow-button-primary:hover {
+				background: var(--oow-accent-hover);
+				border-color: var(--oow-accent-hover);
+				color: #101416;
+			}
+
+			/* METADATA QUICK STATS BAR (POD BANEREM) */
+
+			.oow-meta-bar {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				gap: 16px;
+				margin-top: 32px;
+			}
+
+			.oow-meta-item {
+				background: var(--oow-card);
+				border: 1px solid var(--oow-card-border);
+				border-radius: 8px;
+				padding: 18px;
+				text-align: center;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+			}
+
+			.oow-meta-label {
+				display: block;
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+				color: var(--oow-accent);
+				font-weight: 700;
+				margin-bottom: 6px;
+			}
+
+			.oow-meta-value {
+				font-size: 1.05rem;
+				color: #ffffff;
+				font-weight: 500;
+			}
+
+			/* CONTENT SECTIONS */
+
+			.oow-section {
+				padding: 54px 36px;
+				margin-top: 32px;
+				background: var(--oow-section);
+				border-radius: 12px;
+				border: 1px solid var(--oow-card-border);
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+				scroll-margin-top: 85px;
+			}
+
+			.oow-section h2 {
+				font-family: "Orbitron", sans-serif;
+				font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+				line-height: 1.35;
+				margin: 0 0 20px;
+				color: var(--oow-accent);
+			}
+
+			.oow-section h3 {
+				font-size: 1.25rem;
+				margin: 0 0 12px;
+				color: #ffffff;
+			}
+
+			.oow-section p {
+				color: var(--oow-muted);
+				margin: 0 0 18px;
+			}
+
+			.oow-lead {
+				font-size: 1.15rem;
+				line-height: 1.8;
+				color: #ffffff !important;
+				font-weight: 500;
+			}
+
+			.oow-label {
+				display: inline-block;
+				color: var(--oow-accent);
+				font-size: 0.84rem;
+				text-transform: uppercase;
+				letter-spacing: 1.4px;
+				font-weight: 700;
+				margin-bottom: 8px;
+			}
+
+			/* ROLE BREAKDOWN CARDS */
+
+			.oow-roles-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 20px;
+				margin-top: 28px;
+			}
+
+			.oow-role-card {
+				background: var(--oow-card);
+				border: 1px solid var(--oow-card-border);
+				border-top: 4px solid var(--oow-accent);
+				border-radius: 8px;
+				padding: 22px;
+			}
+
+			.oow-role-card h3 {
+				font-size: 1.1rem;
+				margin-bottom: 10px;
+				color: #ffffff;
+			}
+
+			.oow-role-card ul {
+				margin: 0;
+				padding-left: 18px;
+				color: var(--oow-muted);
+			}
+
+			.oow-role-card li {
+				margin-bottom: 8px;
+				font-size: 0.96rem;
+			}
+
+			/* CARD GRID FOR PROGRESSIVE DARKNESS & MELTING CLOCK */
+
+			.oow-card-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 24px;
+				margin-top: 28px;
+			}
+
+			.oow-example-card {
+				background: var(--oow-card);
+				border: 1px solid var(--oow-card-border);
+				border-radius: 10px;
+				overflow: hidden;
+				min-width: 0;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.oow-example-card img {
+				display: block;
+				width: 100%;
+				aspect-ratio: 16 / 10;
+				object-fit: cover;
+				background: #101416;
+			}
+
+			.oow-example-card-content {
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				justify-content: space-between;
+			}
+
+			.oow-example-card h3 {
+				font-size: 1.12rem;
+				line-height: 1.4;
+				color: #ffffff;
+			}
+
+			/* TAKEAWAY BOX */
+
+			.oow-takeaway {
+				margin-top: 24px;
+				padding: 24px;
+				background: var(--oow-card);
+				border: 1px solid var(--oow-card-border);
+				border-left: 5px solid var(--oow-accent);
+				border-radius: 0 8px 8px 0;
+			}
+
+			.oow-takeaway p {
+				margin: 0 0 14px;
+				color: var(--oow-muted);
+				font-size: 1.02rem;
+				line-height: 1.7;
+			}
+
+			.oow-takeaway p:last-child {
+				margin-bottom: 0;
+			}
+
+			/* NAVIGATION AND FOOTER */
+
+			.navbar {
+				background: rgba(23, 29, 32, 0.9);
+				border-color: var(--oow-card-border);
+			}
+
+			.navbar a {
+				color: #ffffff;
+			}
+
+			.footer {
+				background: var(--oow-section);
+				color: #ffffff;
+				margin-top: 48px;
+				border-top: 1px solid var(--oow-card-border);
+			}
+
+			.footer h2 {
+				color: var(--oow-accent);
+			}
+
+			.footer p, .footer a {
+				color: var(--oow-muted);
+			}
+
+			.footer .contact-details .contact-email {
+				color: var(--oow-accent);
+				font-size: 1.05rem;
+				font-weight: 700;
+			}
+
+			.footer .contact-details a:hover {
+				color: var(--oow-accent-hover);
+				text-decoration: underline;
+			}
+
+			/* RESPONSIVE */
+
+			@media (max-width: 900px) {
+				.oow-meta-bar {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+				.oow-roles-grid {
+					grid-template-columns: 1fr;
+				}
+				.oow-card-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 700px) {
+				.oow-page {
+					width: min(100% - 24px, 1280px);
+				}
+
+				.oow-hero {
+					min-height: 440px;
+				}
+
+				.oow-hero-content {
+					padding: 36px 18px 30px;
+				}
+
+				.oow-section {
+					padding: 32px 20px;
+				}
+
+				.oow-meta-bar {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- MAIN PORTFOLIO NAVIGATION -->
+		<nav class="navbar floating" aria-label="Main navigation">
+			<ul>
+				<li><a href="../../index.html">Portfolio</a></li>
+				<li><a href="../../index.html#about">About</a></li>
+				<li><a href="../../index.html#projects">Projects</a></li>
+				<li>
+					<a class="nav-contact-icon" href="mailto:antoni.janiak.dev@gmail.com" aria-label="Email Antoni" title="Email">
+						<span aria-hidden="true">✉</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon" href="tel:+48662786947" aria-label="Call Antoni" title="Phone">
+						<span aria-hidden="true">☎</span>
+					</a>
+				</li>
+				<li>
+					<a class="nav-contact-icon linkedin-icon" href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
+						<span aria-hidden="true">in</span>
+					</a>
+				</li>
+				<li><a href="../../files/CV_en.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+			</ul>
+		</nav>
+
+
+		<main class="oow-page">
+
+			<!-- TITLE / COVER (HERO BANNER) -->
+			<section class="oow-hero">
+				<img class="oow-hero-image" src="images/oow-banner.png" alt="Operation of What game artwork" loading="lazy">
+
+				<div class="oow-hero-content">
+					<div class="oow-eyebrow">
+						Narrative Design & Writing · Operation of What
+					</div>
+
+					<h1>Simulating Cognitive Decline in the Operating Room</h1>
+
+					<p class="oow-hero-subtitle">
+						A 24-hour game jam project exploring Alzheimer's disease through the failing memory and worsening performance of a surgeon.
+					</p>
+
+					<div class="oow-hero-links">
+						<a class="oow-button oow-button-primary" href="https://fellow-gamedecs.itch.io/operacja-czego" target="_blank" rel="noopener noreferrer">
+							🎮 Play on Itch.io
+						</a>
+						<a class="oow-button" href="../../index.html">
+							Back to Portfolio
+						</a>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- METADATA QUICK STATS BAR -->
+			<div class="oow-meta-bar">
+				<div class="oow-meta-item">
+					<span class="oow-meta-label">Genre</span>
+					<span class="oow-meta-value">Narrative Medical Thriller</span>
+				</div>
+				<div class="oow-meta-item">
+					<span class="oow-meta-label">Engine</span>
+					<span class="oow-meta-value">Unity (C#)</span>
+				</div>
+				<div class="oow-meta-item">
+					<span class="oow-meta-label">Development Time</span>
+					<span class="oow-meta-value">24-Hour Game Jam</span>
+				</div>
+				<div class="oow-meta-item">
+					<span class="oow-meta-label">Team Size</span>
+					<span class="oow-meta-value">Fellow Gamedecs Team</span>
+				</div>
+			</div>
+
+
+			<!-- 01: SCOPE & RESPONSIBILITIES -->
+			<section class="oow-section">
+				<div class="oow-eyebrow">01 · Role & Scope</div>
+
+				<h2>My Responsibilities & Contribution</h2>
+
+				<p class="oow-lead">
+					Working as Narrative Designer and Writer during an intense 24-hour game jam, my focus centered on conceptualizing the ludic metaphor for Alzheimer's disease and pacing the psychological descent.
+				</p>
+
+				<div class="oow-roles-grid">
+					<div class="oow-role-card">
+						<h3>🧠 Narrative Concept & Metaphor</h3>
+						<ul>
+							<li>Designing the core narrative premise of a surgeon suffering from hidden Alzheimer's.</li>
+							<li>Translating memory loss into gameplay feedback loops.</li>
+							<li>Structuring the emotional arc from professional competence to confusion.</li>
+						</ul>
+					</div>
+
+					<div class="oow-role-card">
+						<h3>✍️ Writing & Pacing</h3>
+						<ul>
+							<li>Writing atmospheric prompts, internal monologues, and operating room dialogue.</li>
+							<li>Pacing the gradual degradation of instructions and UI elements.</li>
+							<li>Crafting the poignant narrative payoff leading to the final tragic mistake.</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- 02: NARRATIVE CONCEPT & VISUAL PROGRESSION -->
+			<section class="oow-section">
+				<div class="oow-eyebrow">02 · Narrative Concept & Visual Metaphor</div>
+
+				<h2>The Descent Into Forgetfulness (Step-by-Step Progression)</h2>
+
+				<p class="oow-lead">
+					To represent Alzheimer's disease mechanically and visually, we created a system where time is running out and reality slips away. As the operation progresses, the operating room grows progressively darker and the clock melts.
+				</p>
+
+				<p>
+					This atmospheric deterioration directly impacts player agency: the surgeon performs tasks with increasing difficulty, misremembering tools and forgetting procedures, culminating in a devastating mistake during the final operation.
+				</p>
+
+				<div class="oow-card-grid">
+					<article class="oow-example-card">
+						<img src="images/oow-stage1.png" alt="Stage 1: Clear operation start" loading="lazy">
+						<div class="oow-example-card-content">
+							<div>
+								<span class="oow-label">Phase 01</span>
+								<h3>Lucid Beginning</h3>
+								<p>The operating room is bright, the clock functions normally, and the surgeon executes early tasks with full professional focus.</p>
+							</div>
+						</div>
+					</article>
+
+					<article class="oow-example-card">
+						<img src="images/oow-stage2.png" alt="Stage 2: Progressive dimming and melting clock" loading="lazy">
+						<div class="oow-example-card-content">
+							<div>
+								<span class="oow-label">Phase 02</span>
+								<h3>Fading Clarity</h3>
+								<p>The lighting begins to dim noticeably and the clock starts distorting/melting, symbolizing memory slips and confusion.</p>
+							</div>
+						</div>
+					</article>
+
+					<article class="oow-example-card">
+						<img src="images/oow-stage3.png" alt="Stage 3: Deep darkness and tragic error" loading="lazy">
+						<div class="oow-example-card-content">
+							<div>
+								<span class="oow-label">Phase 03</span>
+								<h3>Total Confusion</h3>
+								<p>Deep shadows envelop the room, instructions blur, and the cognitive failure results in a fatal surgical error.</p>
+							</div>
+						</div>
+					</article>
+				</div>
+			</section>
+
+
+			<!-- 03: WHAT I HAVE LEARNED -->
+			<section class="oow-section">
+				<div class="oow-eyebrow">03 · Retrospective</div>
+
+				<h2>What I Have Learned</h2>
+
+				<div class="oow-takeaway">
+					<span class="oow-label">01 · Ludic Metaphors for Serious Themes</span>
+					<p>
+						Working on *Operation of What* showed how environmental and UI degradation (darkening rooms, melting timers) can effectively convey complex emotional and medical conditions like Alzheimer's without heavy exposition.
+					</p>
+
+					<span class="oow-label" style="display:inline-block; margin-top: 10px;">02 · 24-Hour Jam Scoping Discipline</span>
+					<p>
+						Under a strict 24-hour deadline, focusing purely on a single, strong narrative mechanic—the progressive failure of the player's tools—allowed us to deliver a cohesive and impactful emotional punch.
+					</p>
+
+					<span class="oow-label" style="display:inline-block; margin-top: 10px;">03 · Subverting Familiar Mechanics</span>
+					<p>
+						Taking a classic "surgery simulator" trope and subverting it by making the player character unreliable created an uneasy, thought-provoking player experience that lingers long after the game ends.
+					</p>
+				</div>
+			</section>
+
+		</main>
+
+
+		<!-- CONTACT FOOTER -->
+		<footer class="footer">
+			<section id="contact">
+				<p class="section-kicker">GET IN TOUCH</p>
+				<h2>Let's Connect</h2>
+
+				<p>
+					Interested in game design, narrative or collaborating on a project?
+				</p>
+
+				<div class="container social-icons">
+					<a href="https://github.com/antonver12/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+						<img src="../../icons/github.svg" alt="GitHub">
+					</a>
+
+					<a href="https://www.linkedin.com/in/antoni-janiak-352a87364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+						<img src="../../icons/linkedin.svg" alt="LinkedIn">
+					</a>
+
+					<a href="https://antonver.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+						<img src="../../icons/itchio.svg" alt="itch.io">
+					</a>
+				</div>
+
+				<div class="contact-details">
+					<p>
+						<strong>
+							<a class="contact-email" href="mailto:antoni.janiak.dev@gmail.com">
+								antoni.janiak.dev@gmail.com
+							</a>
+						</strong>
+					</p>
+
+					<p>
+						<a class="contact-phone" href="tel:+48662786947">
+							+48 662 786 947
+						</a>
+					</p>
+				</div>
+
+				<p class="copyright">&copy; 2026 Antoni Janiak</p>
+			</section>
+		</footer>
+
+	</body>
+</html>
