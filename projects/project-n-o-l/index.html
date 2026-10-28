@@ -67,11 +67,12 @@
 				content: "";
 				position: absolute;
 				inset: 0;
+				/* Mocniejszy gradient z głębszą ciemnością, żeby jasny baner nie zlewał się z tekstem */
 				background: linear-gradient(
 					to top,
-					rgba(11, 15, 14, 0.95) 0%,
-					rgba(23, 29, 27, 0.70) 50%,
-					rgba(23, 29, 27, 0.25) 100%
+					rgba(11, 15, 14, 0.98) 0%,
+					rgba(23, 29, 27, 0.85) 55%,
+					rgba(23, 29, 27, 0.50) 100%
 				);
 			}
 
@@ -93,6 +94,7 @@
 				letter-spacing: 2.2px;
 				text-transform: uppercase;
 				margin-bottom: 14px;
+				text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 			}
 
 			.nol-hero h1 {
@@ -102,6 +104,7 @@
 				max-width: 980px;
 				margin: 0 auto 20px;
 				color: #ffffff;
+				text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 			}
 
 			.nol-hero-subtitle {
@@ -109,6 +112,7 @@
 				font-size: 1.22rem;
 				max-width: 780px;
 				margin: 0 auto;
+				text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 			}
 
 			.nol-hero-links {
@@ -527,7 +531,7 @@
 
 					<div class="nol-hero-links">
 						<a class="nol-button nol-button-primary" href="https://antonver.itch.io/project-n-o-l" target="_blank" rel="noopener noreferrer">
-							Play on Itch.io
+							Play 🇵🇱
 						</a>
 						<a class="nol-button" href="../../index.html">
 							Back to Portfolio
@@ -553,7 +557,7 @@
 				</div>
 				<div class="nol-meta-item">
 					<span class="nol-meta-label">Team Size</span>
-					<span class="nol-meta-value">Solo / Game Jam Entry</span>
+					<span class="nol-meta-value">6 people</span>
 				</div>
 			</div>
 
@@ -607,11 +611,11 @@
 				<h2>The Conspiracy Theorist's Basement (Blockout & Layout)</h2>
 
 				<p class="nol-lead">
-					Created during a week-long game jam, Project N-O-L places the player in the shoes of a UFO fanatic operating in communist-era Poland. Operating from a cramped, dreary basement in a concrete prefab block of flats (*wielka płyta*), the physical layout of the room is essential for storytelling.
+					Created during a week-long game jam, Project N-O-L places the player in the shoes of a nephew of a UFO fanatic operating in communist-era Poland. Operating from a cramped, dreary basement in a concrete prefab block of flats, the physical layout of the room is essential for storytelling.
 				</p>
 
 				<p>
-					I designed the blockout and layout of the basement to instantly communicate the authentic "conspiracy uncle" (*szuryczny wujaszek*) vibe through environmental design:
+					I designed the blockout and layout of the basement to instantly communicate the authentic "conspiracy uncle" vibe through environmental design:
 				</p>
 
 				<div class="nol-card-grid">
@@ -621,7 +625,7 @@
 							<div>
 								<span class="nol-label">Zone 01</span>
 								<h3>The Corkboard</h3>
-								<p>Covered in interconnected notes, press clippings, and string mapping out alleged extraterrestrial sightings and government cover-ups.</p>
+								<p>Covered in photos of the uncle's crucial tools to contact UFO, it updates as player ends run, and checks wheter the requirements are met by string mapping out the clues.</p>
 							</div>
 						</div>
 					</article>
@@ -632,7 +636,7 @@
 							<div>
 								<span class="nol-label">Zone 02</span>
 								<h3>The Side Desk</h3>
-								<p>Scratched surfaces featuring nostalgic Polish pop-culture references of the era alongside emblems of the local football team the uncle passionately roots for.</p>
+								<p>Scratched surfaces featuring nostalgic Polish pop-culture references of the era while being a hub for the uncle's chaotic research, as it contains many newspaper clippings and documents which might hide something terrestrial.</p>
 							</div>
 						</div>
 					</article>
@@ -643,14 +647,14 @@
 							<div>
 								<span class="nol-label">Zone 03</span>
 								<h3>The Main Operational Desk</h3>
-								<p>The true heart of operations holding classified files, newspaper clippings, and the vital equipment needed to trigger contact.</p>
+								<p>The true heart of operations holding the vital equipment needed to trigger contact, such as microwave, bulbulator, and other makeshift devices which for a normal person would seem out of place.</p>
 							</div>
 						</div>
 					</article>
 				</div>
 
 				<div class="nol-project-credits" style="margin-top: 30px;">
-					<strong>Design Significance:</strong> Every prop and its placement tell a story of isolation, obsession, and historical context under communist rule.
+					<strong>Design Significance:</strong> Every prop and its placement tell a story of isolation, obsession, moist and historical context under communist rule. The layout greatly enhances the player's immersion and understanding of the uncle's character and his world, and also serves as a functional puzzle space where clues are discovered and interpreted.
 				</div>
 			</section>
 
@@ -666,7 +670,7 @@
 				</p>
 
 				<p>
-					The game features **5 distinct endings**, each tied directly to how the player interprets clues and combines frequencies, signals, and items. Every hint maintains strict narrative consistency with the communist-era setting and the protagonist's eccentric worldview.
+					The game features <strong>5 distinct endings</strong>, each tied directly to how the player interprets clues and combines frequencies, signals, and items. Every hint maintains strict narrative consistency with the communist-era setting and the protagonist's eccentric worldview.
 				</p>
 
 				<div class="nol-media-card">
@@ -675,7 +679,7 @@
 						<span class="nol-label">Example · Environmental Text Clue</span>
 						<div class="nol-translation">
 							<p class="nol-placeholder">
-								"The mysterious night disturbance near the tractor factory was dismissed as industrial equipment malfunction, but workers reported rhythmic humming matching local broadcast frequencies..."
+								As shown in this newspaper clipping, the player must decipher a cryptic message embedded in the text to figure out the correct bulbulator settings. The marks left by the visitors on the field (figure 1) serve as direct codes for the device, while their peculiar movement, making seven somersaults (figure 2) - indicates that the number 7 must be entered into the second part of the bulbulator, as the extraterrestrials seem to be trying to make contact with those wacky movements. Finally, figure 3 points the player toward the TV for channel one, which is the next part of this story and is covered in a new airing. All of this comes together in a quirky, eccentric newspaper covering an absurd, surreal story that happens in the world of the game.
 							</p>
 						</div>
 						<p class="nol-wip-note" style="margin-top: 14px; margin-bottom: 0;">*Note: The text shown in the screenshot has been translated from Polish to English for clarity, though the game itself is in Polish.*</p>
@@ -704,7 +708,7 @@
 						Your browser does not support the video tag.
 					</video>
 					<p class="nol-caption">
-						Gameplay recording demonstrating how clues from documents are applied to equipment like the radio and microwave.
+						Gameplay recording demonstrating how clues from documents are applied to equipment like Bulbulator as seen in an example.
 					</p>
 				</div>
 			</section>
@@ -729,7 +733,7 @@
 
 					<span class="nol-label" style="display:inline-block; margin-top: 10px;">Key Takeaway 03 · Scoping & Player Guidance</span>
 					<p>
-						In games featuring abstract settings and heavy reading elements, adding a clear, well-structured onboarding tutorial is critical to prevent player frustration and ensure smooth puzzle flow.
+						In games featuring abstract settings and heavy reading elements, adding a clear, well-structured onboarding tutorial is critical to prevent player frustration and ensure smooth puzzle flow - this I've learned the hard way, as the game jam's time constraints limited the ability to thouroughly playtest the game.
 					</p>
 				</div>
 			</section>
