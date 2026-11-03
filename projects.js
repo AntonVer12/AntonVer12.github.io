@@ -8,7 +8,7 @@ const projects = [
         role: "Lead Designer & Producer",
         description: "A PS2-inspired survival horror immersive sim in a Slavic world. Led a student team in Scrum, built levels from paper through blockout to lightning, and directed creative vision.",
         link: "https://drive.google.com/file/d/1A0jhvjd8nnwuqSncXz3XRprgfMB_hoCm/view?usp=drive_link",
-        // caseStudy: "projects/pilgrim-of-navia/index.html"
+        socials: "https://www.instagram.com/hollowwoodgames/"
     },
     {
         title: "Soplicowo Summer Diaries",
@@ -78,11 +78,20 @@ if (!projectList) {
         const card = document.createElement("div");
         card.className = "project-card";
 
-        const caseStudyButtonHTML = project.caseStudy ? `
-            <a class="btn-secondary" href="${project.caseStudy}">
-                Design Process &rarr;
-            </a>
-        ` : '';
+        let secondaryButtonHTML = '';
+        if (project.caseStudy) {
+            secondaryButtonHTML = `
+                <a class="btn-secondary" href="${project.caseStudy}">
+                    Design Process &rarr;
+                </a>
+            `;
+        } else if (project.socials) {
+            secondaryButtonHTML = `
+                <a class="btn-secondary" href="${project.socials}" target="_blank" rel="noopener noreferrer">
+                    Socials &rarr;
+                </a>
+            `;
+        }
 
         const videoHTML = project.video ? `
             <video class="project-media project-video" loop muted playsinline preload="none">
@@ -109,13 +118,12 @@ if (!projectList) {
                    rel="noopener noreferrer">
                     View Project
                 </a>
-                ${caseStudyButtonHTML}
+                ${secondaryButtonHTML}
             </div>
         `;
 
         const videoElement = card.querySelector(".project-video");
 
-        // Zdarzenie podpięte do całej karty (card), a nie tylko pod sam obrazek
         if (videoElement) {
             card.addEventListener("mouseenter", () => {
                 videoElement.play().catch(err => console.log("Auto-play prevented:", err));
