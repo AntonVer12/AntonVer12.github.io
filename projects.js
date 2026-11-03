@@ -2,56 +2,68 @@ const projects = [
     {
         title: "Pilgrim of Navia",
         image: "images/PilgrimOfNavia.png",
+        video: "videos/PilgrimOfNavia.mp4",
         alt: "Screenshot from Pilgrim of Navia",
-        description: "Created the original concept, design documentation and levels, prototyped ideas, and integrated programmer-built Unity systems into gameplay. Developed in iterative sprints by a small student research club team, this ongoing project is a PS2-inspired survival horror immersive sim.",
-        tools: ["Unity", "Game Design", "Level Design", "Narrative Design", "Direction", "Prefabs", "Sprints"],
+        duration: "9 months",
+        role: "Lead Designer & Producer",
+        description: "A PS2-inspired survival horror immersive sim in a Slavic world. Led a student team in Scrum, built levels from paper through blockout to lightning, and directed creative vision.",
         link: "https://drive.google.com/file/d/1A0jhvjd8nnwuqSncXz3XRprgfMB_hoCm/view?usp=drive_link",
-        //caseStudy: "/projects/pilgrim-of-navia/"
-    },
-    {
-        title: "DreamDeck",
-        image: "images/DreamDeck.png",
-        alt: "Screenshot from DreamDeck",
-        description: "A narrative-driven card adventure for Cyberiada 2024/2025, following Lucy as grief and fear blur the line between dreams and reality. I developed the narrative concept, script and dialogue, using unreliable narration and linking card-combination battles with storytelling to reveal hidden layers of Lucy’s story through symbolic synergies and clues.",
-        tools: ["Narrative Design", "Game Design", "Writing", "Scriptwriting"],
-        link: "https://fellow-gamedecs.itch.io/dreamdeck",
-        //caseStudy: "/projects/dreamdeck/"
-    },
-    {
-        title: "Project N-O-L",
-        image: "images/NOL.png",
-        alt: "Screenshot from Project N-O-L",
-        description: "Created during a week-long game jam, this quirky investigative game follows a UFO fanatic in communist-era Poland, searching newspaper clippings, radio broadcasts and TV signals for clues to summon aliens using bizarre equipment. I led creative direction, designed the narrative and gameplay, and implemented animations, graphics and ending logic in Unity.",
-        tools: ["Unity", "Game Design", "Narrative Design", "Writing"],
-        link: "https://antonver.itch.io/project-n-o-l",
-        //caseStudy: "/projects/project-n-o-l/"
-    },
-    {
-        title: "FunGone",
-        image: "images/FunGone.png",
-        alt: "Screenshot from FunGone",
-        description: "A cosy mushroom-gardening strategy game created during a week-long game jam. I built its world, wrote short-form humorous dialogue, and designed grid-based roguelite mushroom mechanics focused on synergies and resource management.",
-        tools: ["Game Design", "Writing", "Level Design"],
-        link: "https://antonver.itch.io/fungone",
-        //caseStudy: "/projects/fungone/"
-    },
-    {
-        title: "Operation... What?!",
-        image: "images/OperacjaCzego.png",
-        alt: "Screenshot from Operation... What?!",
-        description: "A cyberpunk surgery simulator created for the Cyberiada 2025 final game jam (24h), a game made to raise awareness of Alzheimer’s disease. I wrote the scenario and dialogue, exploring memory loss and its impact on personal identity of the main character.",
-        tools: ["Narrative Design", "Storytelling"],
-        link: "https://fellow-gamedecs.itch.io/operacja-czego",
-        //caseStudy: "/projects/operation-what/"
+        // caseStudy: "projects/pilgrim-of-navia/index.html"
     },
     {
         title: "Soplicowo Summer Diaries",
         image: "images/Tadek.png",
+        video: "videos/Tadek.mp4",
         alt: "Screenshot from Soplicowo Summer Diaries",
-        description: "A unique cooperative dating simulator based on the classic Polish epic ''Pan Tadeusz''. I wrote dialogues, adapted classical characters to a new media, and designed whole narrative structure behind it.",
-        tools: ["Narrative Design", "Storytelling", "Dialogue Writing", "Documentation Writing"],
+        duration: "5 months",
+        role: "Game/Narrative Designer & Writer",
+        description: "A co-op dating sim adapted from Pan Tadeusz. Wrote dialogues, structured narrative flow, conducted deep historical and literary research, and maintained detailed documentation",
         link: "https://www.youtube.com/watch?v=xUlZ1ocaIwQ",
-        //caseStudy: "/projects/soplicowo-summer-diaries/"
+        caseStudy: "projects/soplicowo-summer-diaries/index.html"
+    },
+    {
+        title: "Project N-O-L",
+        image: "images/NOL.png",
+        video: "videos/NOL.mp4",
+        alt: "Screenshot from Project N-O-L",
+        duration: "7 days",
+        role: "Game/Narrative Designer & Writer",
+        description: "An investigative jam game set in communist Poland. Led creative direction, designed interior and mechanics, world, and created with custom animations in Unity.",
+        link: "https://antonver.itch.io/project-n-o-l",
+        caseStudy: "projects/project-n-o-l/index.html"
+    },
+    {
+        title: "FunGone",
+        image: "images/FunGone.png",
+        video: "videos/FunGone.mp4",
+        alt: "Screenshot from FunGone",
+        duration: "7 days",
+        role: "Game/Narrative Designer & Writer",
+        description: "A cosy mushroom-gardening strategy game. Built world lore, wrote humorous dialogue, designed level layout, and crafted grid-based roguelike mechanics according to the jam's theme, and done some VFX.",
+        link: "https://antonver.itch.io/fungone",
+        caseStudy: "projects/fungone/index.html"
+    },
+    {
+        title: "DreamDeck",
+        image: "images/DreamDeck.png",
+        video: "videos/DreamDeck.mp4",
+        alt: "Screenshot from DreamDeck",
+        duration: "2 months",
+        role: "Game/Narrative Designer & Writer",
+        description: "A narrative card adventure exploring grief and reality. Wrote script riddled with unreliable narration of main character, and created card synergies with the story progression (Honorable Mention at Cyberiada for narration).",
+        link: "https://fellow-gamedecs.itch.io/dreamdeck",
+        caseStudy: "projects/dreamdeck/index.html"
+    },
+    {
+        title: "Operation... What?!",
+        image: "images/OperacjaCzego.png",
+        video: "videos/OperacjaCzego.mp4",
+        alt: "Screenshot from Operation... What?!",
+        duration: "24 hours",
+        role: "Writer & Narrative Designer",
+        description: "A cyberpunk surgery simulator raising Alzheimer's awareness. Wrote scenario and dialogue focusing on personal identity and memory loss.",
+        link: "https://fellow-gamedecs.itch.io/operacja-czego",
+        caseStudy: "projects/operation-what/index.html"
     }
 ];
 
@@ -66,25 +78,32 @@ if (!projectList) {
         const card = document.createElement("div");
         card.className = "project-card";
 
-        const toolsHTML = project.tools
-            .map(tool => `<span class="tool">${tool}</span>`)
-            .join(", ");
-
-        // Warunkowe wygenerowanie przycisku Design Process tylko jeśli caseStudy istnieje i nie jest wykomentowane
         const caseStudyButtonHTML = project.caseStudy ? `
-            <a class="btn" href="${project.caseStudy}">
-                Design Process
+            <a class="btn-secondary" href="${project.caseStudy}">
+                Design Process &rarr;
             </a>
         ` : '';
 
+        const videoHTML = project.video ? `
+            <video class="project-media project-video" loop muted playsinline preload="none">
+                <source src="${project.video}" type="video/mp4">
+            </video>
+        ` : '';
+
         card.innerHTML = `
-            <img src="${project.image}" alt="${project.alt}">
-            <h3>${project.title}</h3>
-            <p class="tools"><strong>Tools:</strong> ${toolsHTML}</p>
-            <p>${project.description}</p>
+            <div class="project-media-wrapper">
+                <img class="project-media project-image" src="${project.image}" alt="${project.alt}">
+                ${videoHTML}
+            </div>
+            <div class="project-title-area">
+                <h3>${project.title}</h3>
+                <span class="project-duration">${project.duration}</span>
+            </div>
+            <p class="project-role"><strong>Role:</strong> ${project.role}</p>
+            <p class="project-desc">${project.description}</p>
 
             <div class="project-links">
-                <a class="btn"
+                <a class="btn-primary"
                    href="${project.link}"
                    target="_blank"
                    rel="noopener noreferrer">
@@ -94,10 +113,19 @@ if (!projectList) {
             </div>
         `;
 
-        const projectImage = card.querySelector("img");
-        projectImage.addEventListener("error", () => {
-            console.error("Could not load project image:", project.image);
-        });
+        const videoElement = card.querySelector(".project-video");
+
+        // Zdarzenie podpięte do całej karty (card), a nie tylko pod sam obrazek
+        if (videoElement) {
+            card.addEventListener("mouseenter", () => {
+                videoElement.play().catch(err => console.log("Auto-play prevented:", err));
+            });
+
+            card.addEventListener("mouseleave", () => {
+                videoElement.pause();
+                videoElement.currentTime = 0;
+            });
+        }
 
         projectList.appendChild(card);
     });
